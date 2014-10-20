@@ -8,7 +8,7 @@ class ExternalDocs implements ExternalDocsInterface
     /**
      * @var string
      */
-    private $name;
+    private $description;
 
     /**
      * @var string
@@ -16,20 +16,13 @@ class ExternalDocs implements ExternalDocsInterface
     private $url;
 
     /**
-     * @var string
-     */
-    private $email;
-
-    /**
-     * @param string $name
+     * @param string $description
      * @param string $url
-     * @param string $email
      */
-    public function __construct($name = null, $url= null, $email = null)
+    public function __construct($description = null, $url= null)
     {
-        $this->name = $name;
+        $this->description = $description;
         $this->url = $url;
-        $this->email = $email;
     }
 
     /**
@@ -38,9 +31,8 @@ class ExternalDocs implements ExternalDocsInterface
     public function generate()
     {
         $result= [];
-        $result= Generator::addItemToArrayIfNotNull($result, "name", $this->name);
+        $result= Generator::addItemToArrayIfNotNull($result, "description", $this->description);
         $result= Generator::addItemToArrayIfNotNull($result, "url", $this->url);
-        $result= Generator::addItemToArrayIfNotNull($result, "email", $this->email);
 
         return $result;
     }
@@ -50,16 +42,16 @@ class ExternalDocs implements ExternalDocsInterface
      */
     public function getDescription()
     {
-        return $this->name;
+        return $this->description;
     }
 
     /**
-     * @param string $name
+     * @param string $description
      * @return $this
      */
-    public function setName($name)
+    public function setDescription($description)
     {
-        $this->name = $name;
+        $this->description = $description;
 
         return $this;
     }
@@ -70,16 +62,5 @@ class ExternalDocs implements ExternalDocsInterface
     public function getUrl()
     {
         return $this->url;
-    }
-
-    /**
-     * @param string $url
-     * @return $this
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
     }
 }
