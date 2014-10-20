@@ -1,0 +1,10 @@
+# Unnecessary files
+.git/
+.idea/
+
+# Project
+vendor/
+
+# Other
+*tmp
+*/Thumbs.db

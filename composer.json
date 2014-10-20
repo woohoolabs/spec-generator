@@ -1,0 +1,23 @@
+{
+    "name":"woohoolabs/spec-generator",
+    "description":"Woohoo Labs. Spec Generator",
+    "type":"library",
+    "keywords":["Woohoo Labs.", "Specification", "Generator", "Swagger"],
+    "license":"MIT",
+    "authors":[
+        {
+            "name":"Máté Kocsis",
+            "email":"kocsismate@woohoolabs.com"
+        }
+    ],
+    "require":{
+        "php":">=5.4.0",
+		"jms/serializer": "~0.16",
+        "symfony/yaml": "~2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "WoohooLabs\\SpecGenerator\\": "src/"
+        }
+    }
+}
