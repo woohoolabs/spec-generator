@@ -40,13 +40,30 @@ class Generator
 
     /**
      * @param array $array
+     * @param \WoohooLabs\SpecGenerator\GeneratableInterface $value
+     * @return array
+     */
+    public static function pushGeneratableToArrayIfNotEmpty($array, GeneratableInterface $value)
+    {
+        if ($value !== null) {
+            $generation= $value->generate();
+            if (is_array($generation) === true && empty($generation) === false) {
+                $array[] = $value;
+            }
+        }
+
+        return $array;
+    }
+
+    /**
+     * @param array $array
      * @param string $key
      * @param array $value
      * @return array
      */
     public static function addItemToArrayIfNotEmpty($array, $key, array $value)
     {
-        if (empty($value) === false) {
+        if ($value !== null && empty($value) === false) {
             $array[$key] = $value;
         }
 
