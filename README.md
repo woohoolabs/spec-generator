@@ -16,5 +16,5 @@
 
 ## License
 
-The MIT License (MIT). Please see [License File](https://github.com/woohoolabs/spec-generator/blob/master/LICENSE.md)
+The MIT License (MIT). Please see the [License File](https://github.com/woohoolabs/spec-generator/blob/master/LICENSE.md)
 for more information.
