@@ -43,16 +43,16 @@ class NumberHeader extends AbstractHeader
      */
     public function generate()
     {
-        $result= Generator::addItemToArrayIfNotNull([], "description", $this->getDescription());
+        $result= Generator::addScalarToArrayIfNotNull([], "description", $this->getDescription());
         $result["type"] = $this->getType();
-        $result= Generator::addItemToArrayIfNotNull($result, "format", $this->getFormat());
-        $result= Generator::addItemToArrayIfNotNull($result, "default", $this->default);
-        $result= Generator::addItemToArrayIfNotNull($result, "maximum", $this->maximum);
-        $result= Generator::addItemToArrayIfNotNull($result, "exclusiveMaximum", $this->exclusiveMaximum);
-        $result= Generator::addItemToArrayIfNotNull($result, "minimum", $this->minimum);
-        $result= Generator::addItemToArrayIfNotNull($result, "exclusiveMinimum", $this->exclusiveMinimum);
+        $result= Generator::addScalarToArrayIfNotNull($result, "format", $this->getFormat());
+        $result= Generator::addScalarToArrayIfNotNull($result, "default", $this->default);
+        $result= Generator::addScalarToArrayIfNotNull($result, "maximum", $this->maximum);
+        $result= Generator::addScalarToArrayIfNotNull($result, "exclusiveMaximum", $this->exclusiveMaximum);
+        $result= Generator::addScalarToArrayIfNotNull($result, "minimum", $this->minimum);
+        $result= Generator::addScalarToArrayIfNotNull($result, "exclusiveMinimum", $this->exclusiveMinimum);
         $result= Generator::addItemToArrayIfNotEmpty($result, "enum", $this->getEnum());
-        $result= Generator::addItemToArrayIfNotNull($result, "multipleOf", $this->multipleOf);
+        $result= Generator::addScalarToArrayIfNotNull($result, "multipleOf", $this->multipleOf);
 
         return $result;
     }

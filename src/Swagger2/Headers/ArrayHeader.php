@@ -46,15 +46,15 @@ class ArrayHeader extends AbstractHeader
      */
     public function generate()
     {
-        $result= Generator::addItemToArrayIfNotNull([], "description", $this->getDescription());
+        $result= Generator::addScalarToArrayIfNotNull([], "description", $this->getDescription());
         $result["type"] = $this->getType();
-        $result= Generator::addItemToArrayIfNotNull($result, "format", $this->getFormat());
-        $result= Generator::addItemToArrayIfNotNull($result, "default", $this->default);
-        $result= Generator::addItemToArrayIfNotNull($result, "items", $this->items->generate());
-        $result= Generator::addItemToArrayIfNotNull($result, "collectionFormat", $this->collectionFormat);
-        $result= Generator::addItemToArrayIfNotNull($result, "maxItems", $this->maxItems);
-        $result= Generator::addItemToArrayIfNotNull($result, "minItems", $this->minItems);
-        $result= Generator::addItemToArrayIfNotNull($result, "uniqueItems", $this->uniqueItems);
+        $result= Generator::addScalarToArrayIfNotNull($result, "format", $this->getFormat());
+        $result= Generator::addScalarToArrayIfNotNull($result, "default", $this->default);
+        $result= Generator::addScalarToArrayIfNotNull($result, "items", $this->items->generate());
+        $result= Generator::addScalarToArrayIfNotNull($result, "collectionFormat", $this->collectionFormat);
+        $result= Generator::addScalarToArrayIfNotNull($result, "maxItems", $this->maxItems);
+        $result= Generator::addScalarToArrayIfNotNull($result, "minItems", $this->minItems);
+        $result= Generator::addScalarToArrayIfNotNull($result, "uniqueItems", $this->uniqueItems);
         $result= Generator::addItemToArrayIfNotEmpty($result, "enum", $this->getEnum());
 
         return $result;

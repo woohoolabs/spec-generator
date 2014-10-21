@@ -52,10 +52,10 @@ class Info implements InfoInterface
     {
         $result= ["title" => $this->title];
 
-        $result= Generator::addItemToArrayIfNotNull($result, "description", $this->description);
-        $result= Generator::addItemToArrayIfNotNull($result, "termsOfService", $this->termsOfService);
-        $result= Generator::addItemToArrayIfNotNull($result, "contact", $this->contact->generate());
-        $result= Generator::addItemToArrayIfNotNull($result, "licence", $this->licence->generate());
+        $result= Generator::addScalarToArrayIfNotNull($result, "description", $this->description);
+        $result= Generator::addScalarToArrayIfNotNull($result, "termsOfService", $this->termsOfService);
+        $result= Generator::addScalarToArrayIfNotNull($result, "contact", $this->contact->generate());
+        $result= Generator::addScalarToArrayIfNotNull($result, "licence", $this->licence->generate());
 
         $result["version"] = $this->version;
 

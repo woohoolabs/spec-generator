@@ -34,9 +34,9 @@ class ApiKeySecurityScheme extends SecurityScheme
     {
         $result= ["type" => $this->getType()];
 
-        $result= Generator::addItemToArrayIfNotNull($result, "description", $this->getDescription());
-        $result= Generator::addItemToArrayIfNotNull($result, "name", $this->name);
-        $result= Generator::addItemToArrayIfNotNull($result, "in", $this->in);
+        $result= Generator::addScalarToArrayIfNotNull($result, "description", $this->getDescription());
+        $result= Generator::addScalarToArrayIfNotNull($result, "name", $this->name);
+        $result= Generator::addScalarToArrayIfNotNull($result, "in", $this->in);
 
         return $result;
     }

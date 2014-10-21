@@ -1,6 +1,8 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Utilities;
 
+use WoohooLabs\SpecGenerator\GeneratableInterface;
+
 class Generator
 {
     /**
@@ -9,7 +11,7 @@ class Generator
      * @param mixed $value
      * @return array
      */
-    public static function addItemToArrayIfNotNull($array, $key, $value)
+    public static function addScalarToArrayIfNotNull($array, $key, $value)
     {
         if ($value !== null) {
             $array[$key] = $value;
@@ -21,10 +23,28 @@ class Generator
     /**
      * @param array $array
      * @param string $key
-     * @param mixed $value
+     * @param \WoohooLabs\SpecGenerator\GeneratableInterface $value
      * @return array
      */
-    public static function addItemToArrayIfNotEmpty($array, $key, $value)
+    public static function addGeneratableToArrayIfNotEmpty($array, $key, GeneratableInterface $value)
+    {
+        if ($value !== null) {
+            $generation= $value->generate();
+            if (is_array($generation) === true && empty($generation) === false) {
+                $array[$key] = $value;
+            }
+        }
+
+        return $array;
+    }
+
+    /**
+     * @param array $array
+     * @param string $key
+     * @param array $value
+     * @return array
+     */
+    public static function addItemToArrayIfNotEmpty($array, $key, array $value)
     {
         if (empty($value) === false) {
             $array[$key] = $value;

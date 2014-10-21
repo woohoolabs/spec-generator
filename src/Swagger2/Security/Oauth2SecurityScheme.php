@@ -48,11 +48,11 @@ class Oauth2SecurityScheme extends SecurityScheme
     {
         $result= ["type" => $this->getType()];
 
-        $result= Generator::addItemToArrayIfNotNull($result, "description", $this->getDescription());
-        $result= Generator::addItemToArrayIfNotNull($result, "flow", $this->flow);
-        $result= Generator::addItemToArrayIfNotNull($result, "authorizationUrl", $this->authorizationUrl);
-        $result= Generator::addItemToArrayIfNotNull($result, "tokenUrl", $this->tokenUrl);
-        $result= Generator::addItemToArrayIfNotEmpty($result, "scopes", $this->scopes->generate());
+        $result= Generator::addScalarToArrayIfNotNull($result, "description", $this->getDescription());
+        $result= Generator::addScalarToArrayIfNotNull($result, "flow", $this->flow);
+        $result= Generator::addScalarToArrayIfNotNull($result, "authorizationUrl", $this->authorizationUrl);
+        $result= Generator::addScalarToArrayIfNotNull($result, "tokenUrl", $this->tokenUrl);
+        $result= Generator::addGeneratableToArrayIfNotEmpty($result, "scopes", $this->scopes);
 
         return $result;
     }

@@ -29,7 +29,7 @@ class Licence implements LicenceInterface
     public function generate()
     {
         $result= ["name" => $this->name];
-        $result= Generator::addItemToArrayIfNotNull($result, "url", $this->url);
+        $result= Generator::addScalarToArrayIfNotNull($result, "url", $this->url);
 
         return $result;
     }

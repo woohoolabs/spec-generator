@@ -31,8 +31,8 @@ class ExternalDocs implements ExternalDocsInterface
     public function generate()
     {
         $result= [];
-        $result= Generator::addItemToArrayIfNotNull($result, "description", $this->description);
-        $result= Generator::addItemToArrayIfNotNull($result, "url", $this->url);
+        $result= Generator::addScalarToArrayIfNotNull($result, "description", $this->description);
+        $result= Generator::addScalarToArrayIfNotNull($result, "url", $this->url);
 
         return $result;
     }

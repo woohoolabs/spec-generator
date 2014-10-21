@@ -33,13 +33,13 @@ class StringHeader extends AbstractHeader
      */
     public function generate()
     {
-        $result= Generator::addItemToArrayIfNotNull([], "description", $this->getDescription());
+        $result= Generator::addScalarToArrayIfNotNull([], "description", $this->getDescription());
         $result["type"] = $this->getType();
-        $result= Generator::addItemToArrayIfNotNull($result, "format", $this->getFormat());
-        $result= Generator::addItemToArrayIfNotNull($result, "default", $this->default);
-        $result= Generator::addItemToArrayIfNotNull($result, "maxLength", $this->maxLength);
-        $result= Generator::addItemToArrayIfNotNull($result, "minLength", $this->minLength);
-        $result= Generator::addItemToArrayIfNotNull($result, "pattern", $this->pattern);
+        $result= Generator::addScalarToArrayIfNotNull($result, "format", $this->getFormat());
+        $result= Generator::addScalarToArrayIfNotNull($result, "default", $this->default);
+        $result= Generator::addScalarToArrayIfNotNull($result, "maxLength", $this->maxLength);
+        $result= Generator::addScalarToArrayIfNotNull($result, "minLength", $this->minLength);
+        $result= Generator::addScalarToArrayIfNotNull($result, "pattern", $this->pattern);
         $result= Generator::addItemToArrayIfNotEmpty($result, "enum", $this->getEnum());
 
         return $result;

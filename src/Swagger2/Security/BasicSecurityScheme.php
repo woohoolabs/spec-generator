@@ -20,7 +20,7 @@ class BasicSecurityScheme extends SecurityScheme
     {
         $result= ["type" => $this->getType()];
 
-        $result= Generator::addItemToArrayIfNotNull($result, "description", $this->getDescription());
+        $result= Generator::addScalarToArrayIfNotNull($result, "description", $this->getDescription());
 
         return $result;
     }
