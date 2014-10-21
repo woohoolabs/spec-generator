@@ -7,7 +7,7 @@ interface ResponsesDefinitionsInterface extends GeneratableInterface
 {
     /**
      * @param string $name
-     * @return array
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Responses\ResponseInterface|null
      */
     public function getResponse($name);
 

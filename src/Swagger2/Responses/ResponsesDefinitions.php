@@ -34,7 +34,7 @@ class ResponsesDefinitions implements ResponsesDefinitionsInterface
 
     /**
      * @param string $name
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Responses\ResponseInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Responses\ResponseInterface|null
      */
     public function getResponse($name)
     {
