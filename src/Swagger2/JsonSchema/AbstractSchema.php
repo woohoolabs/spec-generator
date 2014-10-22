@@ -1,7 +1,7 @@
 <?php
-namespace WoohooLabs\SpecGenerator\Swagger2\Headers;
+namespace WoohooLabs\SpecGenerator\Swagger2\JsonSchema;
 
-abstract class AbstractHeader implements HeaderInterface
+abstract class AbstractSchema implements SchemaInterface
 {
     /**
      * @var string
