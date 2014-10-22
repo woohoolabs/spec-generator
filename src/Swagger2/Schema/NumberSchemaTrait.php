@@ -8,11 +8,6 @@ trait NumberSchemaTrait
     /**
      * @var number
      */
-    protected $default;
-
-    /**
-     * @var number
-     */
     protected $maximum;
 
     /**
@@ -40,33 +35,13 @@ trait NumberSchemaTrait
      */
     public function generateNumberSchema()
     {
-        $result= Generator::addScalarToArrayIfNotNull([], "default", $this->default);
-        $result= Generator::addScalarToArrayIfNotNull($result, "maximum", $this->maximum);
+        $result= Generator::addScalarToArrayIfNotNull([], "maximum", $this->maximum);
         $result= Generator::addScalarToArrayIfNotNull($result, "exclusiveMaximum", $this->exclusiveMaximum);
         $result= Generator::addScalarToArrayIfNotNull($result, "minimum", $this->minimum);
         $result= Generator::addScalarToArrayIfNotNull($result, "exclusiveMinimum", $this->exclusiveMinimum);
         $result= Generator::addScalarToArrayIfNotNull($result, "multipleOf", $this->multipleOf);
 
         return $result;
-    }
-
-    /**
-     * @return number
-     */
-    public function getDefault()
-    {
-        return $this->default;
-    }
-
-    /**
-     * @param number $default
-     * @return $this
-     */
-    public function setDefault($default)
-    {
-        $this->default = $default;
-
-        return $this;
     }
 
     /**

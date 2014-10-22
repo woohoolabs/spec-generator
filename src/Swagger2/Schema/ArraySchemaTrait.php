@@ -7,11 +7,6 @@ use WoohooLabs\SpecGenerator\Utilities\Generator;
 trait ArraySchemaTrait
 {
     /**
-     * @var array
-     */
-    protected $default;
-
-    /**
      * @var \WoohooLabs\SpecGenerator\Swagger2\Items\ItemsInterface
      */
     private $items;
@@ -41,32 +36,13 @@ trait ArraySchemaTrait
      */
     public function generateArraySchema()
     {
-        $result= Generator::addScalarToArrayIfNotNull([], "items", $this->items->generate());
+        $result= Generator::addGeneratableToArrayIfNotEmpty([], "items", $this->items);
         $result= Generator::addScalarToArrayIfNotNull($result, "collectionFormat", $this->collectionFormat);
         $result= Generator::addScalarToArrayIfNotNull($result, "maxItems", $this->maxItems);
         $result= Generator::addScalarToArrayIfNotNull($result, "minItems", $this->minItems);
         $result= Generator::addScalarToArrayIfNotNull($result, "uniqueItems", $this->uniqueItems);
 
         return $result;
-    }
-
-    /**
-     * @return array
-     */
-    public function getDefault()
-    {
-        return $this->default;
-    }
-
-    /**
-     * @param array $default
-     * @return $this
-     */
-    public function setDefault($default)
-    {
-        $this->default = $default;
-
-        return $this;
     }
 
     /**

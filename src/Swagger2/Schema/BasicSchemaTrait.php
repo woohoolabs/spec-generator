@@ -21,6 +21,11 @@ trait BasicSchemaTrait
     private $format;
 
     /**
+     * @var mixed
+     */
+    protected $default;
+
+    /**
      * @var array
      */
     private $enum;
@@ -33,6 +38,7 @@ trait BasicSchemaTrait
         $result= Generator::addScalarToArrayIfNotNull([], "description", $this->getDescription());
         $result["type"] = $this->getType();
         $result= Generator::addScalarToArrayIfNotNull($result, "format", $this->getFormat());
+        $result= Generator::addScalarToArrayIfNotNull($result, "default", $this->default);
         $result= Generator::addItemToArrayIfNotEmpty($result, "enum", $this->getEnum());
 
         return $result;
@@ -88,6 +94,25 @@ trait BasicSchemaTrait
     public function setFormat($format)
     {
         $this->format = $format;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDefault()
+    {
+        return $this->default;
+    }
+
+    /**
+     * @param mixed $default
+     * @return $this
+     */
+    public function setDefault($default)
+    {
+        $this->default = $default;
 
         return $this;
     }
