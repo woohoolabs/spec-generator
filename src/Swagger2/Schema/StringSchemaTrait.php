@@ -1,10 +1,15 @@
 <?php
-namespace WoohooLabs\SpecGenerator\Swagger2\JsonSchema;
+namespace WoohooLabs\SpecGenerator\Swagger2\Schema;
 
 use WoohooLabs\SpecGenerator\Utilities\Generator;
 
-class StringSchema extends AbstractSchema
+trait StringSchemaTrait
 {
+    /**
+     * @var string
+     */
+    protected $default;
+
     /**
      * @var integer
      */
@@ -21,26 +26,14 @@ class StringSchema extends AbstractSchema
     private $pattern;
 
     /**
-     * @param string $format
-     */
-    public function __construct($format = null)
-    {
-        parent::__construct("string", $format);
-    }
-
-    /**
      * @return array
      */
-    public function generate()
+    public function generateStringSchema()
     {
-        $result= Generator::addScalarToArrayIfNotNull([], "description", $this->getDescription());
-        $result["type"] = $this->getType();
-        $result= Generator::addScalarToArrayIfNotNull($result, "format", $this->getFormat());
-        $result= Generator::addScalarToArrayIfNotNull($result, "default", $this->default);
+        $result= Generator::addScalarToArrayIfNotNull([], "default", $this->default);
         $result= Generator::addScalarToArrayIfNotNull($result, "maxLength", $this->maxLength);
         $result= Generator::addScalarToArrayIfNotNull($result, "minLength", $this->minLength);
         $result= Generator::addScalarToArrayIfNotNull($result, "pattern", $this->pattern);
-        $result= Generator::addItemToArrayIfNotEmpty($result, "enum", $this->getEnum());
 
         return $result;
     }

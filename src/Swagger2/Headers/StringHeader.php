@@ -1,15 +1,25 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Swagger2\Headers;
 
-use WoohooLabs\SpecGenerator\Swagger2\JsonSchema\StringSchema;
+use WoohooLabs\SpecGenerator\Swagger2\Schema\StringSchemaTrait;
 
-class StringHeader extends StringSchema implements HeaderInterface
+class StringHeader extends AbstractHeader
 {
+    use StringSchemaTrait;
+
     /**
      * @param string $format
      */
     public function __construct($format = null)
     {
-        parent::__construct($format);
+        parent::__construct("string", $format);
+    }
+
+    /**
+     * @return array
+     */
+    public function generate()
+    {
+        return array_merge($this->generateBasicSchema(), $this->generateStringSchema());
     }
 }

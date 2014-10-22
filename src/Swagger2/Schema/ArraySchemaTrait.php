@@ -1,11 +1,16 @@
 <?php
-namespace WoohooLabs\SpecGenerator\Swagger2\JsonSchema;
+namespace WoohooLabs\SpecGenerator\Swagger2\Schema;
 
 use WoohooLabs\SpecGenerator\Swagger2\Items\ItemsInterface;
 use WoohooLabs\SpecGenerator\Utilities\Generator;
 
-class ArraySchema extends AbstractSchema
+trait ArraySchemaTrait
 {
+    /**
+     * @var array
+     */
+    protected $default;
+
     /**
      * @var \WoohooLabs\SpecGenerator\Swagger2\Items\ItemsInterface
      */
@@ -32,30 +37,15 @@ class ArraySchema extends AbstractSchema
     private $uniqueItems;
 
     /**
-     * @param string $format
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Items\ItemsInterface $items
-     */
-    public function __construct($format = null, ItemsInterface $items = null)
-    {
-        parent::__construct("array", $format);
-        $this->items = $items;
-    }
-
-    /**
      * @return array
      */
-    public function generate()
+    public function generateArraySchema()
     {
-        $result= Generator::addScalarToArrayIfNotNull([], "description", $this->getDescription());
-        $result["type"] = $this->getType();
-        $result= Generator::addScalarToArrayIfNotNull($result, "format", $this->getFormat());
-        $result= Generator::addScalarToArrayIfNotNull($result, "default", $this->default);
-        $result= Generator::addScalarToArrayIfNotNull($result, "items", $this->items->generate());
+        $result= Generator::addScalarToArrayIfNotNull([], "items", $this->items->generate());
         $result= Generator::addScalarToArrayIfNotNull($result, "collectionFormat", $this->collectionFormat);
         $result= Generator::addScalarToArrayIfNotNull($result, "maxItems", $this->maxItems);
         $result= Generator::addScalarToArrayIfNotNull($result, "minItems", $this->minItems);
         $result= Generator::addScalarToArrayIfNotNull($result, "uniqueItems", $this->uniqueItems);
-        $result= Generator::addItemToArrayIfNotEmpty($result, "enum", $this->getEnum());
 
         return $result;
     }
@@ -88,10 +78,10 @@ class ArraySchema extends AbstractSchema
     }
 
     /**
-     * @param ItemsInterface $items
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Items\ItemsInterface $items
      * @return $this
      */
-    public function setItems($items)
+    public function setItems(ItemsInterface $items = null)
     {
         $this->items = $items;
 

@@ -1,10 +1,15 @@
 <?php
-namespace WoohooLabs\SpecGenerator\Swagger2\JsonSchema;
+namespace WoohooLabs\SpecGenerator\Swagger2\Schema;
 
 use WoohooLabs\SpecGenerator\Utilities\Generator;
 
-class NumberSchema extends AbstractSchema
+trait NumberSchemaTrait
 {
+    /**
+     * @var number
+     */
+    protected $default;
+
     /**
      * @var number
      */
@@ -31,27 +36,15 @@ class NumberSchema extends AbstractSchema
     private $multipleOf;
 
     /**
-     * @param string $format
-     */
-    public function __construct($format = null)
-    {
-        parent::__construct("number", $format);
-    }
-
-    /**
      * @return array
      */
-    public function generate()
+    public function generateNumberSchema()
     {
-        $result= Generator::addScalarToArrayIfNotNull([], "description", $this->getDescription());
-        $result["type"] = $this->getType();
-        $result= Generator::addScalarToArrayIfNotNull($result, "format", $this->getFormat());
-        $result= Generator::addScalarToArrayIfNotNull($result, "default", $this->default);
+        $result= Generator::addScalarToArrayIfNotNull([], "default", $this->default);
         $result= Generator::addScalarToArrayIfNotNull($result, "maximum", $this->maximum);
         $result= Generator::addScalarToArrayIfNotNull($result, "exclusiveMaximum", $this->exclusiveMaximum);
         $result= Generator::addScalarToArrayIfNotNull($result, "minimum", $this->minimum);
         $result= Generator::addScalarToArrayIfNotNull($result, "exclusiveMinimum", $this->exclusiveMinimum);
-        $result= Generator::addItemToArrayIfNotEmpty($result, "enum", $this->getEnum());
         $result= Generator::addScalarToArrayIfNotNull($result, "multipleOf", $this->multipleOf);
 
         return $result;

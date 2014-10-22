@@ -1,7 +1,9 @@
 <?php
-namespace WoohooLabs\SpecGenerator\Swagger2\JsonSchema;
+namespace WoohooLabs\SpecGenerator\Swagger2\Schema;
 
-abstract class AbstractSchema implements SchemaInterface
+use WoohooLabs\SpecGenerator\Utilities\Generator;
+
+trait BasicSchemaTrait
 {
     /**
      * @var string
@@ -19,35 +21,22 @@ abstract class AbstractSchema implements SchemaInterface
     private $format;
 
     /**
-     * @var mixed
-     */
-    protected $default;
-
-    /**
      * @var array
      */
     private $enum;
 
     /**
-     * @param string $type
-     * @param string $format
+     * @return array
      */
-    public function __construct($type, $format = null)
+    public function generateBasicSchema()
     {
-        $this->type = $type;
-        $this->format = $format;
+        $result= Generator::addScalarToArrayIfNotNull([], "description", $this->getDescription());
+        $result["type"] = $this->getType();
+        $result= Generator::addScalarToArrayIfNotNull($result, "format", $this->getFormat());
+        $result= Generator::addItemToArrayIfNotEmpty($result, "enum", $this->getEnum());
+
+        return $result;
     }
-
-    /**
-     * @return mixed
-     */
-    abstract public function getDefault();
-
-    /**
-     * @param mixed $default
-     * @return $this
-     */
-    abstract public function setDefault($default);
 
     /**
      * @return string
