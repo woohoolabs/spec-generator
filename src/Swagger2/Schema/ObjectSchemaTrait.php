@@ -6,7 +6,7 @@ use WoohooLabs\SpecGenerator\Utilities\Generator;
 trait ObjectSchemaTrait
 {
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Schema\SchemaProperty
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Schema\SchemaProperties
      */
     private $properties;
 
