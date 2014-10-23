@@ -1,9 +1,7 @@
 # Change Log
 
-### 0.1.0 - XXXX-XX-XX
+### 0.3.0 - 2014-10-23
 
 #### Added
 
-#### Changed
-
-#### Fixed
+- Supporting Swagger 2.0
