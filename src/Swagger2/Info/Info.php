@@ -26,9 +26,9 @@ class Info implements InfoInterface
     private $contact;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Info\Licence
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Info\License
      */
-    private $licence;
+    private $license;
 
     /**
      * @var string
@@ -64,7 +64,7 @@ class Info implements InfoInterface
         $result= Generator::addItemToArrayIfNotEmpty($result, "description", $this->description);
         $result= Generator::addItemToArrayIfNotEmpty($result, "termsOfService", $this->termsOfService);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "contact", $this->contact);
-        $result= Generator::addGeneratableToArrayIfNotEmpty($result, "licence", $this->licence);
+        $result= Generator::addGeneratableToArrayIfNotEmpty($result, "license", $this->license);
         $result["version"] = $this->version;
 
         return $result;
@@ -147,20 +147,20 @@ class Info implements InfoInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Info\Licence
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Info\License
      */
-    public function getLicence()
+    public function getLicense()
     {
-        return $this->licence;
+        return $this->license;
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Info\Licence $licence
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Info\License $licence
      * @return $this
      */
-    public function setLicence(Licence $licence)
+    public function setLicense(License $licence)
     {
-        $this->licence = $licence;
+        $this->license = $licence;
 
         return $this;
     }

@@ -3,7 +3,7 @@ namespace WoohooLabs\SpecGenerator\Swagger2\Info;
 
 use WoohooLabs\SpecGenerator\Utilities\Generator;
 
-class Licence implements LicenceInterface
+class License implements LicenseInterface
 {
     /**
      * @var string

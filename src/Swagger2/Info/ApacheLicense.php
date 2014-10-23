@@ -1,7 +1,7 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Swagger2\Info;
 
-class ApacheLicence extends Licence
+class ApacheLicense extends License
 {
     /**
      * @param string $url
