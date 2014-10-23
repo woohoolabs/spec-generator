@@ -91,9 +91,7 @@ class Operation implements OperationInterface
      */
     public function generate()
     {
-        $result= [];
-
-        $result= Generator::addItemToArrayIfNotEmpty($result, "tags", $this->tags);
+        $result= Generator::addItemToArrayIfNotEmpty([], "tags", $this->tags);
         $result= Generator::addItemToArrayIfNotEmpty($result, "summary", $this->summary);
         $result= Generator::addItemToArrayIfNotEmpty($result, "description", $this->description);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "externalDocs", $this->externalDocs);

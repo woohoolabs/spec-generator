@@ -29,7 +29,7 @@ class Licence implements LicenceInterface
      * @param string $name
      * @param string $url
      */
-    protected function __construct($name = null, $url = null)
+    public function __construct($name = null, $url = null)
     {
         $this->name = $name;
         $this->url = $url;

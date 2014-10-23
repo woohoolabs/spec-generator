@@ -22,7 +22,7 @@ class SchemaProperties implements GeneratableInterface
     /**
      * @param array $properties
      */
-    protected function __construct(array $properties = [])
+    public function __construct(array $properties = [])
     {
         $this->properties= $properties;
     }

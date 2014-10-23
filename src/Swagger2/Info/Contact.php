@@ -36,7 +36,7 @@ class Contact implements ContactInterface
      * @param string $url
      * @param string $email
      */
-    protected function __construct($name = null, $url= null, $email = null)
+    public function __construct($name = null, $url= null, $email = null)
     {
         $this->name = $name;
         $this->url = $url;
@@ -48,8 +48,7 @@ class Contact implements ContactInterface
      */
     public function generate()
     {
-        $result= [];
-        $result= Generator::addItemToArrayIfNotEmpty($result, "name", $this->name);
+        $result= Generator::addItemToArrayIfNotEmpty([], "name", $this->name);
         $result= Generator::addItemToArrayIfNotEmpty($result, "url", $this->url);
         $result= Generator::addItemToArrayIfNotEmpty($result, "email", $this->email);
 

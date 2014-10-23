@@ -111,7 +111,7 @@ class SwaggerSpec implements SwaggerSpecInterface
     public function generate()
     {
         $result= ["swagger" => $this->swagger];
-        $result["info"] = $this->info !== null ? $this->info->generate() : "";
+        $result["info"] = $this->info !== null ? $this->info->generate() : null;
         $result= Generator::addItemToArrayIfNotEmpty($result, "host", $this->host);
         $result= Generator::addItemToArrayIfNotEmpty($result, "basePath", $this->basePath);
         $result= Generator::addItemToArrayIfNotEmpty($result, "schemes", $this->schemes);

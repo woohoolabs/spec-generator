@@ -43,9 +43,7 @@ class Xml implements XmlInterface
      */
     public function generate()
     {
-        $result= [];
-
-        $result= Generator::addItemToArrayIfNotEmpty($result, "name", $this->name);
+        $result= Generator::addItemToArrayIfNotEmpty([], "name", $this->name);
         $result= Generator::addItemToArrayIfNotEmpty($result, "namespace", $this->namespace);
         $result= Generator::addItemToArrayIfNotEmpty($result, "prefix", $this->prefix);
         $result= Generator::addItemToArrayIfNotEmpty($result, "attribute", $this->attribute);

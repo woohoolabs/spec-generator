@@ -21,12 +21,12 @@ class Info implements InfoInterface
     private $termsOfService;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Info\ContactInterface
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Info\Contact
      */
     private $contact;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Info\LicenceInterface
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Info\Licence
      */
     private $licence;
 

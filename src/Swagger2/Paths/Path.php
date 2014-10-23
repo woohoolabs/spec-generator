@@ -66,9 +66,7 @@ class Path implements PathInterface
      */
     public function generate()
     {
-        $result= [];
-
-        $result= Generator::mergeGeneratableToArrayIfNotEmpty($result, $this->ref);
+        $result= Generator::mergeGeneratableToArrayIfNotEmpty([], $this->ref);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "get", $this->get);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "get", $this->get);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "post", $this->post);

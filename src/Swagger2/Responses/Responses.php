@@ -29,9 +29,7 @@ class Responses implements ResponsesInterface
      */
     public function generate()
     {
-        $result= [];
-
-        $result= Generator::addGeneratableToArrayIfNotEmpty($result, "default", $this->default);
+        $result= Generator::addGeneratableToArrayIfNotEmpty([], "default", $this->default);
         foreach ($this->responses as $httpStatusCode => $response) {
             $result= Generator::addGeneratableToArrayIfNotEmpty($result, $httpStatusCode, $response);
         }
