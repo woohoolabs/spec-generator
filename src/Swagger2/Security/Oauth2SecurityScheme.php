@@ -30,6 +30,18 @@ class Oauth2SecurityScheme extends AbstractSecurityScheme
      * @param string $authorizationUrl
      * @param string $tokenUrl
      * @param \WoohooLabs\SpecGenerator\Swagger2\Security\Scopes $scopes
+     * @return $this
+     */
+    public static function create($flow = null, $authorizationUrl = null, $tokenUrl = null, Scopes $scopes = null)
+    {
+        return new self($flow, $authorizationUrl, $tokenUrl, $scopes);
+    }
+
+    /**
+     * @param string $flow
+     * @param string $authorizationUrl
+     * @param string $tokenUrl
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Security\Scopes $scopes
      */
     public function __construct($flow = null, $authorizationUrl = null, $tokenUrl = null, Scopes $scopes = null)
     {

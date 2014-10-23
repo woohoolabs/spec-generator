@@ -10,6 +10,15 @@ class SecurityRequirement implements SecurityRequirementInterface
 
     /**
      * @param array $schemes
+     * @return $this
+     */
+    public static function create(array $schemes = [])
+    {
+        return new self($schemes);
+    }
+
+    /**
+     * @param array $schemes
      */
     public function __construct(array $schemes = [])
     {

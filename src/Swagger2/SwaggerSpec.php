@@ -117,7 +117,7 @@ class SwaggerSpec implements SwaggerSpecInterface
         $result= Generator::addItemToArrayIfNotEmpty($result, "schemes", $this->schemes);
         $result= Generator::addItemToArrayIfNotEmpty($result, "consumes", $this->consumes);
         $result= Generator::addItemToArrayIfNotEmpty($result, "produces", $this->produces);
-        $result["paths"]= $this->paths !== null ? $this->paths->generate() : "";
+        $result["paths"]= $this->paths !== null ? $this->paths->generate() : null;
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "definitions", $this->definitions);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "parameters", $this->parameters);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "responses", $this->responses);

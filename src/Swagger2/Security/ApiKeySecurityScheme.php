@@ -18,6 +18,16 @@ class ApiKeySecurityScheme extends AbstractSecurityScheme
     /**
      * @param string $name
      * @param string $in
+     * @return $this
+     */
+    public static function create($name = null, $in = null)
+    {
+        return new self($name, $in);
+    }
+
+    /**
+     * @param string $name
+     * @param string $in
      */
     public function __construct($name = null, $in = null)
     {

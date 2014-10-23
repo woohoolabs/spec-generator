@@ -15,6 +15,18 @@ class SchemaParameter extends AbstractParameter
      * @param string $in
      * @param boolean $required
      * @param \WoohooLabs\SpecGenerator\Swagger2\Schema\SchemaInterface $schema
+     * @return $this
+     */
+    public static function create($name = null, $in = null, $required = null, SchemaInterface $schema = null)
+    {
+        return new self($name, $in, $required, $schema);
+    }
+
+    /**
+     * @param string $name
+     * @param string $in
+     * @param boolean $required
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Schema\SchemaInterface $schema
      */
     public function __construct($name = null, $in = null, $required = null, SchemaInterface $schema = null)
     {

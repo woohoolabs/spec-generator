@@ -12,6 +12,18 @@ class ArrayParameter extends AbstractParameter
      * @param string $name
      * @param string $in
      * @param boolean $required
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Items\ItemsInterface $items
+     * @return $this
+     */
+    public static function create($name = null, $in = null, $required = null, ItemsInterface $items = null)
+    {
+        return new self($name, $in, $required, $items);
+    }
+
+    /**
+     * @param string $name
+     * @param string $in
+     * @param boolean $required
      * @param \WoohooLabs\SpecGenerator\Swagger2\Items\ItemsInterface $schema
      */
     public function __construct($name = null, $in = null, $required = null, ItemsInterface $schema = null)

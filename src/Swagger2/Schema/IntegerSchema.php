@@ -8,6 +8,15 @@ class IntegerSchema extends AbstractExtendedSchema
 
     /**
      * @param string $format
+     * @return $this
+     */
+    public static function create($format = "int32")
+    {
+        return new self($format);
+    }
+
+    /**
+     * @param string $format
      */
     public function __construct($format = "int32")
     {

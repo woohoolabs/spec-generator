@@ -5,6 +5,14 @@ use WoohooLabs\SpecGenerator\Utilities\Generator;
 
 class BasicSecurityScheme extends AbstractSecurityScheme
 {
+    /**
+     * @return $this
+     */
+    public static function create()
+    {
+        return new self();
+    }
+
     public function __construct()
     {
         parent::__construct("basic");

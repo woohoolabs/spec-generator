@@ -10,6 +10,15 @@ class ParametersDefinitions implements ParametersDefinitionsInterface
 
     /**
      * @param array $parameters
+     * @return $this
+     */
+    public static function create(array $parameters = [])
+    {
+        return new self($parameters);
+    }
+
+    /**
+     * @param array $parameters
      */
     public function __construct(array $parameters = [])
     {

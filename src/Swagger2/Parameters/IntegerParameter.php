@@ -12,6 +12,18 @@ class IntegerParameter extends AbstractParameter
      * @param string $in
      * @param boolean $required
      * @param string $format
+     * @return $this
+     */
+    public static function create($name = null, $in = null, $required = null, $format = "int32")
+    {
+        return new self($name, $in, $required, $format);
+    }
+
+    /**
+     * @param string $name
+     * @param string $in
+     * @param boolean $required
+     * @param string $format
      */
     public function __construct($name = null, $in = null, $required = null, $format = "int32")
     {

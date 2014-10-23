@@ -6,11 +6,16 @@ class ObjectSchema extends AbstractExtendedSchema
     use ObjectSchemaTrait;
 
     /**
-     * @param string $format
+     * @return $this
      */
-    public function __construct($format = null)
+    public static function create()
     {
-        parent::__construct("object", $format);
+        return new self();
+    }
+
+    public function __construct()
+    {
+        parent::__construct("object");
     }
 
     /**
