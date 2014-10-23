@@ -6,6 +6,7 @@ use WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocs;
 use WoohooLabs\SpecGenerator\Swagger2\Info\Info;
 use WoohooLabs\SpecGenerator\Swagger2\Parameters\ParametersDefinitions;
 use WoohooLabs\SpecGenerator\Swagger2\Paths\Paths;
+use WoohooLabs\SpecGenerator\Swagger2\Security\SecurityDefinitions;
 use WoohooLabs\SpecGenerator\Utilities\Generator;
 
 class SwaggerSpec implements SwaggerSpecInterface
@@ -16,7 +17,7 @@ class SwaggerSpec implements SwaggerSpecInterface
     private $swagger= "2.0";
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Info\InfoInterface
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Info\Info
      */
     private $info;
 
@@ -322,7 +323,7 @@ class SwaggerSpec implements SwaggerSpecInterface
     }
 
     /**
-     * @return Security\SecurityDefinitions
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Security\SecurityDefinitions
      */
     public function getSecurityDefinitions()
     {
@@ -330,10 +331,10 @@ class SwaggerSpec implements SwaggerSpecInterface
     }
 
     /**
-     * @param Security\SecurityDefinitions $securityDefinitions
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Security\SecurityDefinitions $securityDefinitions
      * @return $this
      */
-    public function setSecurityDefinitions($securityDefinitions)
+    public function setSecurityDefinitions(SecurityDefinitions $securityDefinitions)
     {
         $this->securityDefinitions = $securityDefinitions;
 

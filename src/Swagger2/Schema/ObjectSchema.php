@@ -1,7 +1,6 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Swagger2\Schema;
 
-
 class ObjectSchema extends AbstractExtendedSchema
 {
     use ObjectSchemaTrait;
