@@ -75,9 +75,12 @@ class Path implements PathInterface
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "patch", $this->patch);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "options", $this->options);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "head", $this->head);
+
+        $parameters= [];
         foreach ($this->parameters as $parameter) {
-            $result= Generator::pushGeneratableToArrayIfNotEmpty($result["parameters"], $parameter);
+            $parameters= Generator::pushGeneratableToArrayIfNotEmpty($parameters, $parameter);
         }
+        $result= Generator::addItemToArrayIfNotEmpty($result, "parameters", $parameters);
 
         return $result;
     }

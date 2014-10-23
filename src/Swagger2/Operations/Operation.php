@@ -98,15 +98,22 @@ class Operation implements OperationInterface
         $result= Generator::addItemToArrayIfNotEmpty($result, "operationId", $this->operationId);
         $result= Generator::addItemToArrayIfNotEmpty($result, "consumes", $this->consumes);
         $result= Generator::addItemToArrayIfNotEmpty($result, "produces", $this->produces);
+
+        $parameters= [];
         foreach ($this->parameters as $parameter) {
-            $result= Generator::pushGeneratableToArrayIfNotEmpty($result["parameters"], $parameter);
+            $parameters= Generator::pushGeneratableToArrayIfNotEmpty($parameters, $parameter);
         }
+        $result= Generator::addItemToArrayIfNotEmpty($result, "parameters", $parameters);
+
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "responses", $this->responses);
         $result= Generator::addItemToArrayIfNotEmpty($result, "schemes", $this->schemes);
         $result= Generator::addItemToArrayIfNotEmpty($result, "deprecated", $this->deprecated);
+
+        $security= [];
         foreach ($this->security as $securityRequirement) {
-            $result= Generator::pushGeneratableToArrayIfNotEmpty($result["security"], $securityRequirement);
+            $security= Generator::pushGeneratableToArrayIfNotEmpty($security, $securityRequirement);
         }
+        $result= Generator::addItemToArrayIfNotEmpty($result, "security", $security);
 
         return $result;
     }
