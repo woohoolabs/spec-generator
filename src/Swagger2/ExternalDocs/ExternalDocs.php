@@ -16,12 +16,10 @@ class ExternalDocs implements ExternalDocsInterface
     private $url;
 
     /**
-     * @param string $description
      * @param string $url
      */
-    public function __construct($description = null, $url= null)
+    public function __construct($url= null)
     {
-        $this->description = $description;
         $this->url = $url;
     }
 
@@ -31,8 +29,8 @@ class ExternalDocs implements ExternalDocsInterface
     public function generate()
     {
         $result= [];
-        $result= Generator::addScalarToArrayIfNotNull($result, "description", $this->description);
-        $result= Generator::addScalarToArrayIfNotNull($result, "url", $this->url);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "description", $this->description);
+        $result["url"]= $this->url;
 
         return $result;
     }

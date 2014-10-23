@@ -17,10 +17,12 @@ class Licence implements LicenceInterface
 
     /**
      * @param string $name
+     * @param string $url
      */
-    public function __construct($name = null)
+    public function __construct($name = null, $url = null)
     {
         $this->name = $name;
+        $this->url = $url;
     }
 
     /**
@@ -29,7 +31,7 @@ class Licence implements LicenceInterface
     public function generate()
     {
         $result= ["name" => $this->name];
-        $result= Generator::addScalarToArrayIfNotNull($result, "url", $this->url);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "url", $this->url);
 
         return $result;
     }

@@ -1,14 +1,14 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Swagger2\Definitions;
 
-use WoohooLabs\SpecGenerator\Swagger2\DataTypes\SchemaInterface;
+use WoohooLabs\SpecGenerator\Swagger2\Schema\SchemaInterface;
 
 class Definitions implements DefinitionsInterface
 {
     /**
      * @var array
      */
-    private $schemas;
+    private $schemas= [];
 
     /**
      * @param array $schemas
@@ -36,7 +36,7 @@ class Definitions implements DefinitionsInterface
 
     /**
      * @param string $name
-     * @return \WoohooLabs\SpecGenerator\Swagger2\DataTypes\SchemaInterface|null
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Schema\SchemaInterface|null
      */
     public function getSchema($name)
     {
@@ -53,7 +53,7 @@ class Definitions implements DefinitionsInterface
 
     /**
      * @param string $name
-     * @param \WoohooLabs\SpecGenerator\Swagger2\DataTypes\SchemaInterface $schema
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Schema\SchemaInterface $schema
      * @return $this
      */
     public function setSchema($name, SchemaInterface $schema)

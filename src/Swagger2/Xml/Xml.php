@@ -37,11 +37,11 @@ class Xml implements XmlInterface
     {
         $result= [];
 
-        $result= Generator::addScalarToArrayIfNotNull($result, "name", $this->name);
-        $result= Generator::addScalarToArrayIfNotNull($result, "namespace", $this->namespace);
-        $result= Generator::addScalarToArrayIfNotNull($result, "prefix", $this->prefix);
-        $result= Generator::addScalarToArrayIfNotNull($result, "attribute", $this->attribute);
-        $result= Generator::addScalarToArrayIfNotNull($result, "wrapped", $this->wrapped);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "name", $this->name);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "namespace", $this->namespace);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "prefix", $this->prefix);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "attribute", $this->attribute);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "wrapped", $this->wrapped);
 
         return $result;
     }

@@ -10,9 +10,10 @@ class IntegerItems extends AbstractItems
     /**
      * @param string $format
      */
-    public function __construct($format = null)
+    public function __construct($format = "int32")
     {
-        parent::__construct("integer", $format);
+        parent::__construct("integer");
+        $this->setFormat($format);
     }
 
     /**

@@ -38,9 +38,9 @@ class Contact implements ContactInterface
     public function generate()
     {
         $result= [];
-        $result= Generator::addScalarToArrayIfNotNull($result, "name", $this->name);
-        $result= Generator::addScalarToArrayIfNotNull($result, "url", $this->url);
-        $result= Generator::addScalarToArrayIfNotNull($result, "email", $this->email);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "name", $this->name);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "url", $this->url);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "email", $this->email);
 
         return $result;
     }
@@ -93,9 +93,12 @@ class Contact implements ContactInterface
 
     /**
      * @param string $email
+     * @return $this
      */
     public function setEmail($email)
     {
         $this->email = $email;
+
+        return $this;
     }
 }

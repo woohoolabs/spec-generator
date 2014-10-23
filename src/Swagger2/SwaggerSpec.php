@@ -1,6 +1,11 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Swagger2;
 
+use WoohooLabs\SpecGenerator\Swagger2\Definitions\Definitions;
+use WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocs;
+use WoohooLabs\SpecGenerator\Swagger2\Info\Info;
+use WoohooLabs\SpecGenerator\Swagger2\Parameters\ParametersDefinitions;
+use WoohooLabs\SpecGenerator\Swagger2\Paths\Paths;
 use WoohooLabs\SpecGenerator\Utilities\Generator;
 
 class SwaggerSpec implements SwaggerSpecInterface
@@ -28,40 +33,52 @@ class SwaggerSpec implements SwaggerSpecInterface
     /**
      * @var array
      */
-    private $schemes;
+    private $schemes= [];
 
     /**
      * @var array
      */
-    private $consumes;
+    private $consumes= [];
 
     /**
      * @var array
      */
-    private $produces;
+    private $produces= [];
 
     /**
      * @var \WoohooLabs\SpecGenerator\Swagger2\Paths\Paths
      */
     private $paths;
 
+    /**
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Definitions\Definitions
+     */
     private $definitions;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Parameters\Parameters
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Parameters\ParametersDefinitions
      */
     private $parameters;
 
+    /**
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Responses\Responses
+     */
     private $responses;
 
+    /**
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Security\SecurityDefinitions
+     */
     private $securityDefinitions;
-
-    private $security;
 
     /**
      * @var array
      */
-    private $tags;
+    private $security= [];
+
+    /**
+     * @var array
+     */
+    private $tags= [];
 
     /**
      * @var \WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocs
@@ -69,7 +86,7 @@ class SwaggerSpec implements SwaggerSpecInterface
     private $externalDocs;
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Info\InfoInterface|null $info
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Info\InfoInterface $info
      */
     public function __construct($info = null)
     {
@@ -84,16 +101,299 @@ class SwaggerSpec implements SwaggerSpecInterface
     public function generate()
     {
         $result= ["swagger" => $this->swagger];
-        $result["info"] = $this->info->generate();
-
-        $result= Generator::addScalarToArrayIfNotNull($result, "host", $this->host);
-        $result= Generator::addScalarToArrayIfNotNull($result, "basePath", $this->basePath);
-        $result= Generator::addScalarToArrayIfNotNull($result, "schemes", $this->schemes);
-        $result= Generator::addScalarToArrayIfNotNull($result, "consumes", $this->consumes);
-        $result= Generator::addScalarToArrayIfNotNull($result, "produces", $this->produces);
-
-        $result["paths"]= $this->paths->generate();
+        $result["info"] = $this->info !== null ? $this->info : "";
+        $result= Generator::addItemToArrayIfNotEmpty($result, "host", $this->host);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "basePath", $this->basePath);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "schemes", $this->schemes);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "consumes", $this->consumes);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "produces", $this->produces);
+        $result["paths"]= $this->paths !== null ? $this->paths->generate() : "";
+        $result= Generator::addGeneratableToArrayIfNotEmpty($result, "definitions", $this->definitions);
+        $result= Generator::addGeneratableToArrayIfNotEmpty($result, "parameters", $this->parameters);
+        $result= Generator::addGeneratableToArrayIfNotEmpty($result, "responses", $this->responses);
+        $result= Generator::addGeneratableToArrayIfNotEmpty($result, "securityDefinitions", $this->securityDefinitions);
+        foreach ($this->security as $security) {
+            $result = Generator::pushGeneratableToArrayIfNotEmpty($result["security"], $security);
+        }
+        foreach ($this->tags as $tag) {
+            $result = Generator::pushGeneratableToArrayIfNotEmpty($result["tags"], $tag);
+        }
+        $result= Generator::addGeneratableToArrayIfNotEmpty($result, "externalDocs", $this->externalDocs);
 
         return $result;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSwagger()
+    {
+        return $this->swagger;
+    }
+
+    /**
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Info\Info
+     */
+    public function getInfo()
+    {
+        return $this->info;
+    }
+
+    /**
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Info\Info $info
+     * @return $this
+     */
+    public function setInfo(Info $info)
+    {
+        $this->info = $info;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHost()
+    {
+        return $this->host;
+    }
+
+    /**
+     * @param string $host
+     * @return $this
+     */
+    public function setHost($host)
+    {
+        $this->host = $host;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBasePath()
+    {
+        return $this->basePath;
+    }
+
+    /**
+     * @param string $basePath
+     * @return $this
+     */
+    public function setBasePath($basePath)
+    {
+        $this->basePath = $basePath;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSchemes()
+    {
+        return $this->schemes;
+    }
+
+    /**
+     * @param array $schemes
+     * @return $this
+     */
+    public function setSchemes(array $schemes)
+    {
+        $this->schemes = $schemes;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getConsumes()
+    {
+        return $this->consumes;
+    }
+
+    /**
+     * @param array $consumes
+     * @return $this
+     */
+    public function setConsumes(array $consumes)
+    {
+        $this->consumes = $consumes;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getProduces()
+    {
+        return $this->produces;
+    }
+
+    /**
+     * @param array $produces
+     * @return $this
+     */
+    public function setProduces(array $produces)
+    {
+        $this->produces = $produces;
+
+        return $this;
+    }
+
+    /**
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Paths\Paths
+     */
+    public function getPaths()
+    {
+        return $this->paths;
+    }
+
+    /**
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Paths\Paths $paths
+     * @return $this
+     */
+    public function setPaths(Paths $paths)
+    {
+        $this->paths = $paths;
+
+        return $this;
+    }
+
+    /**
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Definitions\Definitions
+     */
+    public function getDefinitions()
+    {
+        return $this->definitions;
+    }
+
+    /**
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Definitions\Definitions $definitions
+     * @return $this
+     */
+    public function setDefinitions(Definitions $definitions)
+    {
+        $this->definitions = $definitions;
+
+        return $this;
+    }
+
+    /**
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Parameters\ParametersDefinitions
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
+
+    /**
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Parameters\ParametersDefinitions $parameters
+     * @return $this
+     */
+    public function setParameters(ParametersDefinitions $parameters)
+    {
+        $this->parameters = $parameters;
+
+        return $this;
+    }
+
+    /**
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Responses\Responses
+     */
+    public function getResponses()
+    {
+        return $this->responses;
+    }
+
+    /**
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Responses\Responses $responses
+     * @return $this
+     */
+    public function setResponses($responses)
+    {
+        $this->responses = $responses;
+
+        return $this;
+    }
+
+    /**
+     * @return Security\SecurityDefinitions
+     */
+    public function getSecurityDefinitions()
+    {
+        return $this->securityDefinitions;
+    }
+
+    /**
+     * @param Security\SecurityDefinitions $securityDefinitions
+     * @return $this
+     */
+    public function setSecurityDefinitions($securityDefinitions)
+    {
+        $this->securityDefinitions = $securityDefinitions;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSecurity()
+    {
+        return $this->security;
+    }
+
+    /**
+     * @param array $security
+     * @return $this
+     */
+    public function setSecurity(array $security)
+    {
+        $this->security = $security;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param array $tags
+     * @return $this
+     */
+    public function setTags(array $tags)
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * @return \WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocs
+     */
+    public function getExternalDocs()
+    {
+        return $this->externalDocs;
+    }
+
+    /**
+     * @param \WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocs $externalDocs
+     * @return $this
+     */
+    public function setExternalDocs(ExternalDocs $externalDocs)
+    {
+        $this->externalDocs = $externalDocs;
+
+        return $this;
     }
 }

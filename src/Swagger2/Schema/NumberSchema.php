@@ -11,7 +11,8 @@ class NumberSchema extends AbstractExtendedSchema
      */
     public function __construct($format = null)
     {
-        parent::__construct("numer", $format);
+        parent::__construct("number");
+        $this->setFormat($format);
     }
 
     /**

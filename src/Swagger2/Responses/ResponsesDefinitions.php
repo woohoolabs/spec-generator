@@ -6,7 +6,7 @@ class ResponsesDefinitions implements ResponsesDefinitionsInterface
     /**
      * @var array
      */
-    private $responses;
+    private $responses= [];
 
     /**
      * @param array $responses

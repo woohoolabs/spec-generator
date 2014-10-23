@@ -51,12 +51,10 @@ class Info implements InfoInterface
     public function generate()
     {
         $result= ["title" => $this->title];
-
-        $result= Generator::addScalarToArrayIfNotNull($result, "description", $this->description);
-        $result= Generator::addScalarToArrayIfNotNull($result, "termsOfService", $this->termsOfService);
-        $result= Generator::addScalarToArrayIfNotNull($result, "contact", $this->contact->generate());
-        $result= Generator::addScalarToArrayIfNotNull($result, "licence", $this->licence->generate());
-
+        $result= Generator::addItemToArrayIfNotEmpty($result, "description", $this->description);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "termsOfService", $this->termsOfService);
+        $result= Generator::addGeneratableToArrayIfNotEmpty($result, "contact", $this->contact);
+        $result= Generator::addGeneratableToArrayIfNotEmpty($result, "licence", $this->licence);
         $result["version"] = $this->version;
 
         return $result;
@@ -120,7 +118,7 @@ class Info implements InfoInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Info\ContactInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Info\Contact
      */
     public function getContact()
     {
@@ -128,10 +126,10 @@ class Info implements InfoInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Info\ContactInterface $contact
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Info\Contact $contact
      * @return $this
      */
-    public function setContact(ContactInterface $contact)
+    public function setContact(Contact $contact)
     {
         $this->contact = $contact;
 
@@ -139,7 +137,7 @@ class Info implements InfoInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Info\LicenceInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Info\Licence
      */
     public function getLicence()
     {
@@ -147,10 +145,10 @@ class Info implements InfoInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Info\LicenceInterface $licence
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Info\Licence $licence
      * @return $this
      */
-    public function setLicence(LicenceInterface $licence)
+    public function setLicence(Licence $licence)
     {
         $this->licence = $licence;
 

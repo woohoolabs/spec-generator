@@ -1,5 +1,5 @@
 <?php
-namespace WoohooLabs\SpecGenerator\Swagger2\References;
+namespace WoohooLabs\SpecGenerator\Swagger2\Refs;
 
 abstract class Ref implements RefInterface
 {

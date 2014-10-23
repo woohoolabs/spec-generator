@@ -3,14 +3,11 @@ namespace WoohooLabs\SpecGenerator\Swagger2\Security;
 
 use WoohooLabs\SpecGenerator\Utilities\Generator;
 
-class BasicSecurityScheme extends SecurityScheme
+class BasicSecurityScheme extends AbstractSecurityScheme
 {
-    /**
-     * @param string|null $description
-     */
-    public function __construct($description = null)
+    public function __construct()
     {
-        parent::__construct("basic", $description);
+        parent::__construct("basic");
     }
 
     /**

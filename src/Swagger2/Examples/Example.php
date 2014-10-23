@@ -8,7 +8,7 @@ class Example implements ExampleInterface
     /**
      * @var array
      */
-    private $examples;
+    private $examples= [];
 
     /**
      * @param array $allProduces

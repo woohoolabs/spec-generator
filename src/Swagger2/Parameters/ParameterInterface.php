@@ -5,5 +5,4 @@ use WoohooLabs\SpecGenerator\GeneratableInterface;
 
 interface ParameterInterface extends GeneratableInterface
 {
-
 }

@@ -2,7 +2,7 @@
 namespace WoohooLabs\SpecGenerator\Swagger2\Schema;
 
 use WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocs;
-use WoohooLabs\SpecGenerator\Swagger2\References\SchemaRef;
+use WoohooLabs\SpecGenerator\Swagger2\Refs\SchemaRef;
 use WoohooLabs\SpecGenerator\Utilities\Generator;
 
 abstract class AbstractExtendedSchema implements SchemaInterface
@@ -10,7 +10,7 @@ abstract class AbstractExtendedSchema implements SchemaInterface
     use BasicSchemaTrait;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\References\SchemaRef
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Refs\SchemaRef
      */
     private $ref;
 
@@ -41,12 +41,10 @@ abstract class AbstractExtendedSchema implements SchemaInterface
 
     /**
      * @param string $type
-     * @param string $format
      */
-    public function __construct($type, $format = null)
+    public function __construct($type)
     {
         $this->type = $type;
-        $this->setFormat($format);
     }
 
     /**
@@ -56,7 +54,6 @@ abstract class AbstractExtendedSchema implements SchemaInterface
     {
         $result= Generator::mergeGeneratableToArrayIfNotEmpty([], $this->ref);
         $result["type"] = $this->type;
-        $result= Generator::addItemToArrayIfNotEmpty($result, "format", $this->format);
         $result= Generator::addItemToArrayIfNotEmpty($result, "title", $this->title);
         $result= Generator::addItemToArrayIfNotEmpty($result, "description", $this->getDescription());
         $result= Generator::addItemToArrayIfNotEmpty($result, "default", $this->getDefault());
@@ -69,7 +66,7 @@ abstract class AbstractExtendedSchema implements SchemaInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\References\SchemaRef
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Refs\SchemaRef
      */
     public function getRef()
     {
@@ -77,7 +74,7 @@ abstract class AbstractExtendedSchema implements SchemaInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\References\SchemaRef $ref
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Refs\SchemaRef $ref
      * @return $this
      */
     public function setRef(SchemaRef $ref)

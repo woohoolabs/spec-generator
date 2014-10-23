@@ -6,12 +6,9 @@ class ArraySchema extends AbstractExtendedSchema
 {
     use ArraySchemaTrait;
 
-    /**
-     * @param string $format
-     */
-    public function __construct($format = null)
+    public function __construct()
     {
-        parent::__construct("array", $format);
+        parent::__construct("array");
     }
 
     /**

@@ -34,7 +34,7 @@ class Paths implements PathsInterface
 
     /**
      * @param string $route
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Paths\PathInterface|null
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Paths\Path|null
      */
     public function getPath($route)
     {
@@ -51,10 +51,10 @@ class Paths implements PathsInterface
 
     /**
      * @param string $route
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Paths\PathInterface $path
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Paths\Path $path
      * @return $this
      */
-    public function setPath($route, PathInterface $path)
+    public function setPath($route, Path $path)
     {
         $this->paths[$route]= $path;
 

@@ -1,50 +1,50 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Swagger2\Paths;
 
-use WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface;
+use WoohooLabs\SpecGenerator\Swagger2\Operations\Operation;
 use WoohooLabs\SpecGenerator\Swagger2\Parameters\ParameterInterface;
-use WoohooLabs\SpecGenerator\Swagger2\References\PathRef;
+use WoohooLabs\SpecGenerator\Swagger2\Refs\PathRef;
 use WoohooLabs\SpecGenerator\Utilities\Generator;
 
 class Path implements PathInterface
 {
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\References\PathRef
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Refs\PathRef
      */
     private $ref;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation
      */
     private $get;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation
      */
     private $post;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation
      */
     private $put;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation
      */
     private $delete;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation
      */
     private $patch;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation
      */
     private $options;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation
      */
     private $head;
 
@@ -60,10 +60,8 @@ class Path implements PathInterface
     {
         $result= [];
 
-        if ($this->ref !== null) {
-            $result = array_merge($result, $this->ref->generate());
-        }
-        $result= Generator::addScalarToArrayIfNotNull($result, "get", $this->get);
+        $result= Generator::mergeGeneratableToArrayIfNotEmpty($result, $this->ref);
+        $result= Generator::addGeneratableToArrayIfNotEmpty($result, "get", $this->get);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "get", $this->get);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "post", $this->post);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "put", $this->put);
@@ -71,7 +69,7 @@ class Path implements PathInterface
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "patch", $this->patch);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "options", $this->options);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "head", $this->head);
-        foreach ($this->parameters as $key => $parameter) {
+        foreach ($this->parameters as $parameter) {
             $result= Generator::pushGeneratableToArrayIfNotEmpty($result["parameters"], $parameter);
         }
 
@@ -79,7 +77,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\References\PathRef
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Refs\PathRef
      */
     public function getRef()
     {
@@ -87,7 +85,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\References\PathRef $ref
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Refs\PathRef $ref
      * @return $this
      */
     public function setRef(PathRef $ref)
@@ -98,7 +96,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation
      */
     public function getGet()
     {
@@ -106,10 +104,10 @@ class Path implements PathInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface $get
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation $get
      * @return $this
      */
-    public function setGet(OperationInterface $get)
+    public function setGet(Operation $get)
     {
         $this->get = $get;
 
@@ -117,7 +115,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation
      */
     public function getPost()
     {
@@ -125,10 +123,10 @@ class Path implements PathInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface $post
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation $post
      * @return $this
      */
-    public function setPost(OperationInterface $post)
+    public function setPost(Operation $post)
     {
         $this->post = $post;
 
@@ -136,7 +134,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation
      */
     public function getPut()
     {
@@ -144,10 +142,10 @@ class Path implements PathInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface $put
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation $put
      * @return $this
      */
-    public function setPut(OperationInterface $put)
+    public function setPut(Operation $put)
     {
         $this->put = $put;
 
@@ -155,7 +153,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation
      */
     public function getDelete()
     {
@@ -163,10 +161,10 @@ class Path implements PathInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface $delete
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation $delete
      * @return $this
      */
-    public function setDelete(OperationInterface $delete)
+    public function setDelete(Operation $delete)
     {
         $this->delete = $delete;
 
@@ -174,7 +172,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation
      */
     public function getPatch()
     {
@@ -182,10 +180,10 @@ class Path implements PathInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface $patch
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation $patch
      * @return $this
      */
-    public function setPatch(OperationInterface $patch)
+    public function setPatch(Operation $patch)
     {
         $this->patch = $patch;
 
@@ -193,7 +191,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation
      */
     public function getOptions()
     {
@@ -201,10 +199,10 @@ class Path implements PathInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface $options
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation $options
      * @return $this
      */
-    public function setOptions(OperationInterface $options)
+    public function setOptions(Operation $options)
     {
         $this->options = $options;
 
@@ -212,7 +210,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation
      */
     public function getHead()
     {
@@ -220,10 +218,10 @@ class Path implements PathInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Operations\OperationInterface $head
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Operations\Operation $head
      * @return $this
      */
-    public function setHead(OperationInterface $head)
+    public function setHead(Operation $head)
     {
         $this->head = $head;
 
@@ -253,7 +251,7 @@ class Path implements PathInterface
      * @param \WoohooLabs\SpecGenerator\Swagger2\Parameters\ParameterInterface $parameter
      * @return $this
      */
-    public function setParameter(ParameterInterface $parameter)
+    public function addParameter(ParameterInterface $parameter)
     {
         $this->parameters[] = $parameter;
 

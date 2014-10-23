@@ -3,7 +3,7 @@ namespace WoohooLabs\SpecGenerator\Swagger2\Security;
 
 use WoohooLabs\SpecGenerator\Utilities\Generator;
 
-class ApiKeySecurityScheme extends SecurityScheme
+class ApiKeySecurityScheme extends AbstractSecurityScheme
 {
     /**
      * @var string
@@ -16,13 +16,12 @@ class ApiKeySecurityScheme extends SecurityScheme
     private $in;
 
     /**
-     * @param string|null $description
-     * @param string|null $name
-     * @param string|null $in
+     * @param string $name
+     * @param string $in
      */
-    public function __construct($description = null, $name = null, $in = null)
+    public function __construct($name = null, $in = null)
     {
-        parent::__construct("apiKey", $description);
+        parent::__construct("apiKey");
         $this->name= $name;
         $this->in= $in;
     }

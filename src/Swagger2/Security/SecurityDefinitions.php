@@ -6,7 +6,7 @@ class SecurityDefinitions implements SecurityRequirementInterface
     /**
      * @var array
      */
-    private $schemes;
+    private $schemes= [];
 
     /**
      * @param array $schemes
@@ -34,7 +34,7 @@ class SecurityDefinitions implements SecurityRequirementInterface
 
     /**
      * @param string $name
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Security\SecuritySchemeInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Security\AbstractSecurityScheme
      */
     public function getScheme($name)
     {
@@ -51,10 +51,10 @@ class SecurityDefinitions implements SecurityRequirementInterface
 
     /**
      * @param string $name
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Security\SecuritySchemeInterface $scheme
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Security\AbstractSecurityScheme $scheme
      * @return $this
      */
-    public function setScheme($name, SecuritySchemeInterface $scheme)
+    public function setScheme($name, AbstractSecurityScheme $scheme)
     {
         $this->schemes[$name] = $scheme;
 

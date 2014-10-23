@@ -1,6 +1,7 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Swagger2\Schema;
 
+use WoohooLabs\SpecGenerator\Swagger2\CollectionFormats;
 use WoohooLabs\SpecGenerator\Swagger2\Items\ItemsInterface;
 use WoohooLabs\SpecGenerator\Utilities\Generator;
 
@@ -73,6 +74,46 @@ trait ArraySchemaTrait
     }
 
     /**
+     * @return $this
+     */
+    public function setCsvCollectionFormat()
+    {
+        $this->collectionFormat = CollectionFormats::CSV;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setSsvCollectionFormat()
+    {
+        $this->collectionFormat = CollectionFormats::SSV;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setTsvCollectionFormat()
+    {
+        $this->collectionFormat = CollectionFormats::TSV;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setPipesCollectionFormat()
+    {
+        $this->collectionFormat = CollectionFormats::PIPES;
+
+        return $this;
+    }
+
+    /**
      * @param string $collectionFormat
      * @return $this
      */
@@ -92,7 +133,7 @@ trait ArraySchemaTrait
     }
 
     /**
-     * @param int $maxItems
+     * @param integer $maxItems
      * @return $this
      */
     public function setMaxItems($maxItems)

@@ -1,10 +1,10 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Swagger2\Operations;
 
-use WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocsInterface;
+use WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocs;
 use WoohooLabs\SpecGenerator\Swagger2\Parameters\ParameterInterface;
-use WoohooLabs\SpecGenerator\Swagger2\Responses\ResponsesInterface;
-use WoohooLabs\SpecGenerator\Swagger2\Security\SecurityRequirementInterface;
+use WoohooLabs\SpecGenerator\Swagger2\Responses\Responses;
+use WoohooLabs\SpecGenerator\Swagger2\Security\SecurityRequirement;
 use WoohooLabs\SpecGenerator\Utilities\Generator;
 
 class Operation implements OperationInterface
@@ -12,7 +12,7 @@ class Operation implements OperationInterface
     /**
      * @var array
      */
-    private $tags;
+    private $tags = [];
 
     /**
      * @var string
@@ -37,7 +37,7 @@ class Operation implements OperationInterface
     /**
      * @var array
      */
-    private $consumes;
+    private $consumes = [];
 
     /**
      * @var array
@@ -50,7 +50,7 @@ class Operation implements OperationInterface
     private $parameters = [];
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Responses\ResponsesInterface
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Responses\Responses
      */
     private $responses;
 
@@ -85,19 +85,19 @@ class Operation implements OperationInterface
         $result= [];
 
         $result= Generator::addItemToArrayIfNotEmpty($result, "tags", $this->tags);
-        $result= Generator::addScalarToArrayIfNotNull($result, "summary", $this->summary);
-        $result= Generator::addScalarToArrayIfNotNull($result, "description", $this->description);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "summary", $this->summary);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "description", $this->description);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "externalDocs", $this->externalDocs);
-        $result= Generator::addScalarToArrayIfNotNull($result, "operationId", $this->operationId);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "operationId", $this->operationId);
         $result= Generator::addItemToArrayIfNotEmpty($result, "consumes", $this->consumes);
         $result= Generator::addItemToArrayIfNotEmpty($result, "produces", $this->produces);
-        foreach ($this->parameters as $key => $parameter) {
+        foreach ($this->parameters as $parameter) {
             $result= Generator::pushGeneratableToArrayIfNotEmpty($result["parameters"], $parameter);
         }
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "responses", $this->responses);
         $result= Generator::addItemToArrayIfNotEmpty($result, "schemes", $this->schemes);
-        $result= Generator::addScalarToArrayIfNotNull($result, "deprecated", $this->deprecated);
-        foreach ($this->security as $key => $securityRequirement) {
+        $result= Generator::addItemToArrayIfNotEmpty($result, "deprecated", $this->deprecated);
+        foreach ($this->security as $securityRequirement) {
             $result= Generator::pushGeneratableToArrayIfNotEmpty($result["security"], $securityRequirement);
         }
 
@@ -162,7 +162,7 @@ class Operation implements OperationInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocsInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocs
      */
     public function getExternalDocs()
     {
@@ -170,10 +170,10 @@ class Operation implements OperationInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocsInterface $externalDocs
+     * @param \WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocs $externalDocs
      * @return $this
      */
-    public function setExternalDocs(ExternalDocsInterface $externalDocs)
+    public function setExternalDocs(ExternalDocs $externalDocs)
     {
         $this->externalDocs = $externalDocs;
 
@@ -260,7 +260,7 @@ class Operation implements OperationInterface
      * @param \WoohooLabs\SpecGenerator\Swagger2\Parameters\ParameterInterface $parameter
      * @return $this
      */
-    public function setParameter(ParameterInterface $parameter)
+    public function addParameter(ParameterInterface $parameter)
     {
         $this->parameters[] = $parameter;
 
@@ -268,7 +268,7 @@ class Operation implements OperationInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Responses\ResponsesInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Responses\Responses
      */
     public function getResponses()
     {
@@ -276,10 +276,10 @@ class Operation implements OperationInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Responses\ResponsesInterface $responses
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Responses\Responses $responses
      * @return $this
      */
-    public function setResponses(ResponsesInterface $responses)
+    public function setResponses(Responses $responses)
     {
         $this->responses = $responses;
 
@@ -344,10 +344,10 @@ class Operation implements OperationInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Security\SecurityRequirementInterface $securityRequirement
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Security\SecurityRequirement $securityRequirement
      * @return $this
      */
-    public function setSecurityRequirement(SecurityRequirementInterface $securityRequirement)
+    public function setSecurityRequirement(SecurityRequirement $securityRequirement)
     {
         $this->security[] = $securityRequirement;
 

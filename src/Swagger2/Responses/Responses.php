@@ -14,7 +14,7 @@ class Responses implements ResponsesInterface
     /**
      * @var array
      */
-    private $responses;
+    private $responses= [];
 
     /**
      * @return array
@@ -40,7 +40,7 @@ class Responses implements ResponsesInterface
     }
 
     /**
-     * @param mixed $default
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Responses\ResponseInterface $default
      * @return $this
      */
     public function setDefault(ResponseInterface $default)
@@ -71,7 +71,7 @@ class Responses implements ResponsesInterface
      * @param array $responses
      * @return $this
      */
-    public function setResponses($responses)
+    public function setResponses(array $responses)
     {
         $this->responses = $responses;
 

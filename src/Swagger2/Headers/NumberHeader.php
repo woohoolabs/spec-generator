@@ -12,7 +12,8 @@ class NumberHeader extends AbstractHeader
      */
     public function __construct($format = null)
     {
-        parent::__construct("number", $format);
+        parent::__construct("number");
+        $this->setFormat($format);
     }
 
     /**

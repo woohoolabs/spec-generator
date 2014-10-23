@@ -1,19 +1,19 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Swagger2\Security;
 
-class Scopes implements SecurityRequirementInterface
+class Scopes implements ScopesInterface
 {
     /**
      * @var array
      */
-    private $names;
+    private $scopes= [];
 
     /**
-     * @param array $names
+     * @param array $scopes
      */
-    public function __construct(array $names = [])
+    public function __construct(array $scopes = [])
     {
-        $this->names = $names;
+        $this->scopes = $scopes;
     }
 
     /**
@@ -23,7 +23,7 @@ class Scopes implements SecurityRequirementInterface
     {
         $result= [];
 
-        foreach ($this->names as $name => $description) {
+        foreach ($this->scopes as $name => $description) {
             $result[$name]= $description;
         }
 
@@ -34,9 +34,9 @@ class Scopes implements SecurityRequirementInterface
      * @param string $name
      * @return string|null
      */
-    public function getName($name)
+    public function getScope($name)
     {
-        return isset($this->names[$name]) ? $this->names[$name] : null;
+        return isset($this->scopes[$name]) ? $this->scopes[$name] : null;
     }
 
     /**
@@ -44,7 +44,7 @@ class Scopes implements SecurityRequirementInterface
      */
     public function getResponses()
     {
-        return $this->names;
+        return $this->scopes;
     }
 
     /**
@@ -52,20 +52,20 @@ class Scopes implements SecurityRequirementInterface
      * @param string $description
      * @return $this
      */
-    public function setName($name, $description)
+    public function setScope($name, $description)
     {
-        $this->names[$name] = $description;
+        $this->scopes[$name] = $description;
 
         return $this;
     }
 
     /**
-     * @param array $name
+     * @param array $scopes
      * @return $this
      */
-    public function setNames(array $name)
+    public function setScopes(array $scopes)
     {
-        $this->names = $name;
+        $this->scopes = $scopes;
 
         return $this;
     }

@@ -1,7 +1,7 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Swagger2\Security;
 
-abstract class SecurityScheme implements SecuritySchemeInterface
+abstract class AbstractSecurityScheme implements SecuritySchemeInterface
 {
     /**
      * @var string
@@ -14,13 +14,11 @@ abstract class SecurityScheme implements SecuritySchemeInterface
     private $description;
 
     /**
-     * @param string|null $type
-     * @param string|null $description
+     * @param string $type
      */
-    public function __construct($type = null, $description = null)
+    public function __construct($type = null)
     {
         $this->type = $type;
-        $this->description = $description;
     }
 
     /**

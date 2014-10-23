@@ -9,12 +9,11 @@ class ArrayHeader extends AbstractHeader
     use ArraySchemaTrait;
 
     /**
-     * @param string $format
      * @param \WoohooLabs\SpecGenerator\Swagger2\Items\ItemsInterface $items
      */
-    public function __construct($format = null, ItemsInterface $items = null)
+    public function __construct(ItemsInterface $items = null)
     {
-        parent::__construct("array", $format);
+        parent::__construct("array");
         $this->setItems($items);
     }
 

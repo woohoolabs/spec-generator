@@ -11,7 +11,8 @@ class BooleanSchema extends AbstractExtendedSchema
      */
     public function __construct($format = null)
     {
-        parent::__construct("boolean", $format);
+        parent::__construct("boolean");
+        $this->setFormat($format);
     }
 
     /**

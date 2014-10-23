@@ -3,7 +3,7 @@ namespace WoohooLabs\SpecGenerator\Swagger2\Security;
 
 use WoohooLabs\SpecGenerator\Utilities\Generator;
 
-class Oauth2SecurityScheme extends SecurityScheme
+class Oauth2SecurityScheme extends AbstractSecurityScheme
 {
     /**
      * @var string
@@ -21,20 +21,19 @@ class Oauth2SecurityScheme extends SecurityScheme
     private $tokenUrl;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Security\ScopesInterface
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Security\Scopes
      */
     private $scopes;
 
     /**
-     * @param string|null $description
-     * @param string|null $flow
-     * @param string|null $authorizationUrl
-     * @param string|null $tokenUrl
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Security\ScopesInterface|null $scopes
+     * @param string $flow
+     * @param string $authorizationUrl
+     * @param string $tokenUrl
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Security\Scopes $scopes
      */
-    public function __construct($description = null, $flow = null, $authorizationUrl = null, $tokenUrl = null, ScopesInterface $scopes = null)
+    public function __construct($flow = null, $authorizationUrl = null, $tokenUrl = null, Scopes $scopes = null)
     {
-        parent::__construct("oauth2", $description);
+        parent::__construct("oauth2");
         $this->flow= $flow;
         $this->authorizationUrl= $authorizationUrl;
         $this->tokenUrl= $tokenUrl;
@@ -48,10 +47,10 @@ class Oauth2SecurityScheme extends SecurityScheme
     {
         $result= ["type" => $this->getType()];
 
-        $result= Generator::addScalarToArrayIfNotNull($result, "description", $this->getDescription());
-        $result= Generator::addScalarToArrayIfNotNull($result, "flow", $this->flow);
-        $result= Generator::addScalarToArrayIfNotNull($result, "authorizationUrl", $this->authorizationUrl);
-        $result= Generator::addScalarToArrayIfNotNull($result, "tokenUrl", $this->tokenUrl);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "description", $this->getDescription());
+        $result= Generator::addItemToArrayIfNotEmpty($result, "flow", $this->flow);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "authorizationUrl", $this->authorizationUrl);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "tokenUrl", $this->tokenUrl);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "scopes", $this->scopes);
 
         return $result;
@@ -115,7 +114,7 @@ class Oauth2SecurityScheme extends SecurityScheme
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Security\ScopesInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Security\Scopes
      */
     public function getScopes()
     {
@@ -123,10 +122,10 @@ class Oauth2SecurityScheme extends SecurityScheme
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Security\ScopesInterface $scopes
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Security\Scopes $scopes
      * @return $this
      */
-    public function setScopes(ScopesInterface $scopes)
+    public function setScopes(Scopes $scopes)
     {
         $this->scopes = $scopes;
 

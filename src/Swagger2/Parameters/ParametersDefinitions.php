@@ -6,7 +6,7 @@ class ParametersDefinitions implements ParametersDefinitionsInterface
     /**
      * @var array
      */
-    private $parameters;
+    private $parameters= [];
 
     /**
      * @param array $parameters

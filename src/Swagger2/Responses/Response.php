@@ -1,9 +1,9 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Swagger2\Responses;
 
-use WoohooLabs\SpecGenerator\Swagger2\DataTypes\SchemaInterface;
-use WoohooLabs\SpecGenerator\Swagger2\Examples\ExampleInterface;
-use WoohooLabs\SpecGenerator\Swagger2\Headers\HeadersInterface;
+use WoohooLabs\SpecGenerator\Swagger2\Schema\SchemaInterface;
+use WoohooLabs\SpecGenerator\Swagger2\Examples\Example;
+use WoohooLabs\SpecGenerator\Swagger2\Headers\Headers;
 use WoohooLabs\SpecGenerator\Utilities\Generator;
 
 class Response implements ResponseInterface
@@ -14,19 +14,19 @@ class Response implements ResponseInterface
     private $description;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\DataTypes\SchemaInterface
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Schema\SchemaInterface
      */
     private $schema;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Headers\HeadersInterface
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Headers\Headers
      */
     private $headers;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\Examples\ExampleInterface
+     * @var \WoohooLabs\SpecGenerator\Swagger2\Examples\Example
      */
-    private $examples;
+    private $example;
 
     /**
      * @param string $description
@@ -45,7 +45,7 @@ class Response implements ResponseInterface
 
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "schema", $this->schema);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "headers", $this->headers);
-        $result= Generator::addGeneratableToArrayIfNotEmpty($result, "examples", $this->examples);
+        $result= Generator::addGeneratableToArrayIfNotEmpty($result, "examples", $this->example);
 
         return $result;
     }
@@ -70,7 +70,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\DataTypes\SchemaInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Schema\SchemaInterface
      */
     public function getSchema()
     {
@@ -78,7 +78,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\DataTypes\SchemaInterface $schema
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Schema\SchemaInterface $schema
      * @return $this
      */
     public function setSchema(SchemaInterface $schema)
@@ -89,7 +89,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Headers\HeadersInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Headers\Headers
      */
     public function getHeaders()
     {
@@ -97,10 +97,10 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Headers\HeadersInterface $headers
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Headers\Headers $headers
      * @return $this
      */
-    public function setHeaders(HeadersInterface $headers)
+    public function setHeaders(Headers $headers)
     {
         $this->headers = $headers;
 
@@ -108,20 +108,20 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\Examples\ExampleInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\Examples\Example
      */
-    public function getExamples()
+    public function getExample()
     {
-        return $this->examples;
+        return $this->example;
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Examples\ExampleInterface $examples
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Examples\Example $example
      * @return $this
      */
-    public function setExamples(ExampleInterface $examples)
+    public function setExample(Example $example)
     {
-        $this->examples = $examples;
+        $this->example = $example;
 
         return $this;
     }

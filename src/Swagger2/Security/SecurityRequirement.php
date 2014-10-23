@@ -6,7 +6,7 @@ class SecurityRequirement implements SecurityRequirementInterface
     /**
      * @var array
      */
-    private $schemes;
+    private $schemes= [];
 
     /**
      * @param array $schemes

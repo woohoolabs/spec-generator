@@ -5,6 +5,8 @@ use WoohooLabs\SpecGenerator\Utilities\Generator;
 
 trait StringSchemaTrait
 {
+    use PrimitiveSchemaTrait;
+
     /**
      * @var string
      */
@@ -30,7 +32,8 @@ trait StringSchemaTrait
      */
     public function generateStringSchema()
     {
-        $result= Generator::addScalarToArrayIfNotNull([], "default", $this->default);
+        $result= $this->generatePrimitiveSchema();
+        $result= Generator::addScalarToArrayIfNotNull($result, "default", $this->default);
         $result= Generator::addScalarToArrayIfNotNull($result, "maxLength", $this->maxLength);
         $result= Generator::addScalarToArrayIfNotNull($result, "minLength", $this->minLength);
         $result= Generator::addScalarToArrayIfNotNull($result, "pattern", $this->pattern);

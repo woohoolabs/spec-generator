@@ -1,7 +1,7 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Swagger2\Tags;
 
-use WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocsInterface;
+use WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocs;
 use WoohooLabs\SpecGenerator\Utilities\Generator;
 
 class Tag implements TagInterface
@@ -17,7 +17,7 @@ class Tag implements TagInterface
     private $description;
 
     /**
-     * @var \WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocsInterface
+     * @var \WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocs
      */
     private $externalDocs;
 
@@ -36,7 +36,7 @@ class Tag implements TagInterface
     {
         $result= ["name" => $this->name];
 
-        $result= Generator::addScalarToArrayIfNotNull($result, "description", $this->description);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "description", $this->description);
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "externalDocs", $this->externalDocs);
 
         return $result;
@@ -81,7 +81,7 @@ class Tag implements TagInterface
     }
 
     /**
-     * @return \WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocsInterface
+     * @return \WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocs
      */
     public function getExternalDocs()
     {
@@ -89,10 +89,10 @@ class Tag implements TagInterface
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocsInterface $externalDocs
+     * @param \WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocs $externalDocs
      * @return $this
      */
-    public function setExternalDocs(ExternalDocsInterface $externalDocs)
+    public function setExternalDocs(ExternalDocs $externalDocs)
     {
         $this->externalDocs = $externalDocs;
 

@@ -1,9 +1,9 @@
 <?php
-namespace WoohooLabs\SpecGenerator\Swagger2\References;
+namespace WoohooLabs\SpecGenerator\Swagger2\Refs;
 
-use WoohooLabs\SpecGenerator\Swagger2\Parameters\ParameterInterface;
+use WoohooLabs\SpecGenerator\Swagger2\Responses\ResponseInterface;
 
-class ParameterRef extends Ref implements RefInterface, ParameterInterface
+class ResponseRef extends Ref implements RefInterface, ResponseInterface
 {
     /**
      * @param string $ref

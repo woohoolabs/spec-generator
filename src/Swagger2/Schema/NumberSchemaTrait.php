@@ -5,6 +5,8 @@ use WoohooLabs\SpecGenerator\Utilities\Generator;
 
 trait NumberSchemaTrait
 {
+    use PrimitiveSchemaTrait;
+
     /**
      * @var number
      */
@@ -35,7 +37,8 @@ trait NumberSchemaTrait
      */
     public function generateNumberSchema()
     {
-        $result= Generator::addScalarToArrayIfNotNull([], "maximum", $this->maximum);
+        $result= $this->generatePrimitiveSchema();
+        $result= Generator::addScalarToArrayIfNotNull($result, "maximum", $this->maximum);
         $result= Generator::addScalarToArrayIfNotNull($result, "exclusiveMaximum", $this->exclusiveMaximum);
         $result= Generator::addScalarToArrayIfNotNull($result, "minimum", $this->minimum);
         $result= Generator::addScalarToArrayIfNotNull($result, "exclusiveMinimum", $this->exclusiveMinimum);
