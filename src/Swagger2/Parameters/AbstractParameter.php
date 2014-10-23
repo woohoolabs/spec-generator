@@ -44,7 +44,7 @@ abstract class AbstractParameter implements ParameterInterface
     {
         $result1= Generator::addItemToArrayIfNotEmpty([], "name", $this->name);
         $result1= Generator::addItemToArrayIfNotEmpty($result1, "in", $this->in);
-        $result2= Generator::addItemToArrayIfNotEmpty([], "required", $this->name);
+        $result2= Generator::addItemToArrayIfNotEmpty([], "required", $this->required);
 
         return array_merge($result1, $this->generateBasicSchema(), $result2);
     }
