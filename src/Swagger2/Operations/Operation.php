@@ -70,18 +70,18 @@ class Operation implements OperationInterface
     private $security = [];
 
     /**
-     * @param array $responses
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Responses\Responses $responses
      * @return $this
      */
-    public static function create($responses = [])
+    public static function create(Responses $responses = null)
     {
         return new self($responses);
     }
 
     /**
-     * @param array $responses
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Responses\Responses $responses
      */
-    public function __construct(array $responses = [])
+    public function __construct(Responses $responses = null)
     {
         $this->responses = $responses;
     }
