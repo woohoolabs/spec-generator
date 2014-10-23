@@ -6,12 +6,21 @@ class Headers implements HeadersInterface
     /**
      * @var array
      */
-    private $headers;
+    private $headers= [];
+
+    /**
+     * @param array $headers
+     * @return $this
+     */
+    public static function create(array $headers = [])
+    {
+        return new self($headers);
+    }
 
     /**
      * @param array $headers
      */
-    public function __construct(array $headers = [])
+    protected function __construct(array $headers = [])
     {
         $this->headers = $headers;
     }

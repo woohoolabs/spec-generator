@@ -9,8 +9,17 @@ class AbstractBooleanHeader extends AbstractHeader
 
     /**
      * @param string $format
+     * @return $this
      */
-    public function __construct($format = null)
+    public static function create($format = null)
+    {
+        return new self($format);
+    }
+
+    /**
+     * @param string $format
+     */
+    protected function __construct($format = null)
     {
         parent::__construct("boolean");
         $this->setFormat($format);

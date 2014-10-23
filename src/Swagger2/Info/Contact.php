@@ -24,8 +24,19 @@ class Contact implements ContactInterface
      * @param string $name
      * @param string $url
      * @param string $email
+     * @return $this
      */
-    public function __construct($name = null, $url= null, $email = null)
+    public static function create($name = null, $url = null, $email = null)
+    {
+        return new self($name, $url, $email);
+    }
+
+    /**
+     * @param string $name
+     * @param string $url
+     * @param string $email
+     */
+    protected function __construct($name = null, $url= null, $email = null)
     {
         $this->name = $name;
         $this->url = $url;

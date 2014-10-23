@@ -23,7 +23,7 @@ trait BasicSchemaTrait
     /**
      * @var array
      */
-    private $enum;
+    private $enum= [];
 
     /**
      * @return array

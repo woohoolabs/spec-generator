@@ -12,8 +12,17 @@ class Definitions implements DefinitionsInterface
 
     /**
      * @param array $schemas
+     * @return $this
      */
-    public function __construct(array $schemas = [])
+    public static function create(array $schemas = [])
+    {
+        return new self($schemas);
+    }
+
+    /**
+     * @param array $schemas
+     */
+    private function __construct(array $schemas = [])
     {
         $this->schemas = $schemas;
     }

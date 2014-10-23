@@ -17,8 +17,17 @@ class ExternalDocs implements ExternalDocsInterface
 
     /**
      * @param string $url
+     * @return $this
      */
-    public function __construct($url= null)
+    public static function create($url= null)
+    {
+        return new self($url);
+    }
+
+    /**
+     * @param string $url
+     */
+    private function __construct($url= null)
     {
         $this->url = $url;
     }

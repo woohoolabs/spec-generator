@@ -10,7 +10,7 @@ abstract class AbstractHeader implements HeaderInterface
     /**
      * @param string $type
      */
-    public function __construct($type)
+    protected function __construct($type)
     {
         $this->type = $type;
     }

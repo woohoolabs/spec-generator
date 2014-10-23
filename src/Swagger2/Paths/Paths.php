@@ -6,7 +6,7 @@ class Paths implements PathsInterface
     /**
      * @var array
      */
-    private $paths;
+    private $paths= [];
 
     public function __construct($paths = [])
     {

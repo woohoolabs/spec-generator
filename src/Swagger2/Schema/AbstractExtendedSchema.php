@@ -27,7 +27,7 @@ abstract class AbstractExtendedSchema implements SchemaInterface
     /**
      * @var array
      */
-    private $allOf;
+    private $allOf= [];
 
     /**
      * @var \WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocs
@@ -37,10 +37,10 @@ abstract class AbstractExtendedSchema implements SchemaInterface
     /**
      * @var array
      */
-    private $example;
+    private $example= [];
 
     /**
-     * @param string $type
+     * @param string|array $type
      */
     public function __construct($type)
     {

@@ -12,8 +12,17 @@ class Example implements ExampleInterface
 
     /**
      * @param array $allProduces
+     * @return $this
      */
-    public function __construct(array $allProduces = [])
+    public static function create(array $allProduces = [])
+    {
+        return new self($allProduces);
+    }
+
+    /**
+     * @param array $allProduces
+     */
+    private function __construct(array $allProduces = [])
     {
         $this->examples = $allProduces;
     }

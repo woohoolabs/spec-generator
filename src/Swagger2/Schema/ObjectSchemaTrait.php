@@ -23,7 +23,7 @@ trait ObjectSchemaTrait
     /**
      * @var array
      */
-    private $required;
+    private $required= [];
 
     /**
      * @var string

@@ -5,8 +5,17 @@ class MitLicence extends Licence
 {
     /**
      * @param string $url
+     * @return $this
      */
-    public function __construct($url = null)
+    public static function create($url = null)
+    {
+        return new self($url);
+    }
+
+    /**
+     * @param string $url
+     */
+    protected function __construct($url = null)
     {
         parent::__construct("MIT", $url);
     }
