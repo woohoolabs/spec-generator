@@ -8,11 +8,6 @@ trait StringSchemaTrait
     use PrimitiveSchemaTrait;
 
     /**
-     * @var string
-     */
-    protected $default;
-
-    /**
      * @var integer
      */
     private $maxLength;
@@ -33,7 +28,6 @@ trait StringSchemaTrait
     public function generateStringSchema()
     {
         $result= $this->generatePrimitiveSchema();
-        $result= Generator::addItemToArrayIfNotEmpty($result, "default", $this->default);
         $result= Generator::addItemToArrayIfNotEmpty($result, "maxLength", $this->maxLength);
         $result= Generator::addItemToArrayIfNotEmpty($result, "minLength", $this->minLength);
         $result= Generator::addItemToArrayIfNotEmpty($result, "pattern", $this->pattern);
