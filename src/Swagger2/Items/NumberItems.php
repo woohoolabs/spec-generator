@@ -9,6 +9,15 @@ class NumberItems extends AbstractItems
 
     /**
      * @param string $format
+     * @return $this
+     */
+    public static function create($format = null)
+    {
+        return new self($format);
+    }
+
+    /**
+     * @param string $format
      */
     public function __construct($format = null)
     {

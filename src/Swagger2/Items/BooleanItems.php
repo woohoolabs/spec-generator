@@ -3,9 +3,18 @@ namespace WoohooLabs\SpecGenerator\Swagger2\Items;
 
 use WoohooLabs\SpecGenerator\Swagger2\Schema\BooleanSchemaTrait;
 
-class AbstractBooleanItems extends AbstractItems
+class BooleanItems extends AbstractItems
 {
     use BooleanSchemaTrait;
+
+    /**
+     * @param string $format
+     * @return $this
+     */
+    public static function create($format = null)
+    {
+        return new self($format);
+    }
 
     /**
      * @param string $format

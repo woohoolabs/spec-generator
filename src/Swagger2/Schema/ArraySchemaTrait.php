@@ -38,10 +38,10 @@ trait ArraySchemaTrait
     public function generateArraySchema()
     {
         $result= Generator::addGeneratableToArrayIfNotEmpty([], "items", $this->items);
-        $result= Generator::addScalarToArrayIfNotNull($result, "collectionFormat", $this->collectionFormat);
-        $result= Generator::addScalarToArrayIfNotNull($result, "maxItems", $this->maxItems);
-        $result= Generator::addScalarToArrayIfNotNull($result, "minItems", $this->minItems);
-        $result= Generator::addScalarToArrayIfNotNull($result, "uniqueItems", $this->uniqueItems);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "collectionFormat", $this->collectionFormat);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "maxItems", $this->maxItems);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "minItems", $this->minItems);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "uniqueItems", $this->uniqueItems);
 
         return $result;
     }

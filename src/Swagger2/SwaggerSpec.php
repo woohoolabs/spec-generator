@@ -88,6 +88,15 @@ class SwaggerSpec implements SwaggerSpecInterface
 
     /**
      * @param \WoohooLabs\SpecGenerator\Swagger2\Info\InfoInterface $info
+     * @return $this
+     */
+    public static function create($info = null)
+    {
+        return new self($info);
+    }
+
+    /**
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Info\InfoInterface $info
      */
     public function __construct($info = null)
     {

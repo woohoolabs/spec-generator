@@ -30,6 +30,15 @@ class Response implements ResponseInterface
 
     /**
      * @param string $description
+     * @return $this
+     */
+    public static function create($description = null)
+    {
+        return new self($description);
+    }
+
+    /**
+     * @param string $description
      */
     public function __construct($description = null)
     {

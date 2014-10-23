@@ -17,6 +17,14 @@ class Responses implements ResponsesInterface
     private $responses= [];
 
     /**
+     * @return $this
+     */
+    public static function create()
+    {
+        return new self();
+    }
+
+    /**
      * @return array
      */
     public function generate()

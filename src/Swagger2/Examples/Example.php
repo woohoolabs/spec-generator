@@ -22,7 +22,7 @@ class Example implements ExampleInterface
     /**
      * @param array $allProduces
      */
-    private function __construct(array $allProduces = [])
+    public function __construct(array $allProduces = [])
     {
         $this->examples = $allProduces;
     }

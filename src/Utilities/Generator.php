@@ -8,21 +8,6 @@ class Generator
     /**
      * @param array $array
      * @param string $key
-     * @param mixed $value
-     * @return array
-     */
-    public static function addScalarToArrayIfNotNull($array, $key, $value)
-    {
-        if ($value !== null) {
-            $array[$key] = $value;
-        }
-
-        return $array;
-    }
-
-    /**
-     * @param array $array
-     * @param string $key
      * @param \WoohooLabs\SpecGenerator\GeneratableInterface $value
      * @return array
      */

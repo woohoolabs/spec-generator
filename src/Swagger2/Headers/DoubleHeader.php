@@ -11,7 +11,7 @@ class DoubleHeader extends NumberHeader
         return new self();
     }
 
-    protected function __construct()
+    public function __construct()
     {
         parent::__construct("double");
     }

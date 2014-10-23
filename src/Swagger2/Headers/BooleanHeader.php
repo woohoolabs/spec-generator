@@ -3,7 +3,7 @@ namespace WoohooLabs\SpecGenerator\Swagger2\Headers;
 
 use WoohooLabs\SpecGenerator\Swagger2\Schema\BooleanSchemaTrait;
 
-class AbstractBooleanHeader extends AbstractHeader
+class BooleanHeader extends AbstractHeader
 {
     use BooleanSchemaTrait;
 
@@ -19,7 +19,7 @@ class AbstractBooleanHeader extends AbstractHeader
     /**
      * @param string $format
      */
-    protected function __construct($format = null)
+    public function __construct($format = null)
     {
         parent::__construct("boolean");
         $this->setFormat($format);

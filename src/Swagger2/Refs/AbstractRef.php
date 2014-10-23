@@ -1,7 +1,7 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Swagger2\Refs;
 
-abstract class Ref implements RefInterface
+abstract class AbstractRef implements RefInterface
 {
     /**
      * @var string

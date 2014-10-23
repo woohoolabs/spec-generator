@@ -17,7 +17,7 @@ class BasicSecurityScheme extends AbstractSecurityScheme
     {
         $result= ["type" => $this->getType()];
 
-        $result= Generator::addScalarToArrayIfNotNull($result, "description", $this->getDescription());
+        $result= Generator::addItemToArrayIfNotEmpty($result, "description", $this->getDescription());
 
         return $result;
     }

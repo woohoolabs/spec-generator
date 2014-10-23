@@ -71,6 +71,15 @@ class Operation implements OperationInterface
 
     /**
      * @param array $responses
+     * @return $this
+     */
+    public static function create($responses = [])
+    {
+        return new self($responses);
+    }
+
+    /**
+     * @param array $responses
      */
     public function __construct(array $responses = [])
     {

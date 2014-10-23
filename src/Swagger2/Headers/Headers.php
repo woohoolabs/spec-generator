@@ -20,7 +20,7 @@ class Headers implements HeadersInterface
     /**
      * @param array $headers
      */
-    protected function __construct(array $headers = [])
+    public function __construct(array $headers = [])
     {
         $this->headers = $headers;
     }

@@ -38,11 +38,11 @@ trait NumberSchemaTrait
     public function generateNumberSchema()
     {
         $result= $this->generatePrimitiveSchema();
-        $result= Generator::addScalarToArrayIfNotNull($result, "maximum", $this->maximum);
-        $result= Generator::addScalarToArrayIfNotNull($result, "exclusiveMaximum", $this->exclusiveMaximum);
-        $result= Generator::addScalarToArrayIfNotNull($result, "minimum", $this->minimum);
-        $result= Generator::addScalarToArrayIfNotNull($result, "exclusiveMinimum", $this->exclusiveMinimum);
-        $result= Generator::addScalarToArrayIfNotNull($result, "multipleOf", $this->multipleOf);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "maximum", $this->maximum);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "exclusiveMaximum", $this->exclusiveMaximum);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "minimum", $this->minimum);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "exclusiveMinimum", $this->exclusiveMinimum);
+        $result= Generator::addItemToArrayIfNotEmpty($result, "multipleOf", $this->multipleOf);
 
         return $result;
     }

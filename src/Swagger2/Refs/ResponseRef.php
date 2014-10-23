@@ -3,8 +3,17 @@ namespace WoohooLabs\SpecGenerator\Swagger2\Refs;
 
 use WoohooLabs\SpecGenerator\Swagger2\Responses\ResponseInterface;
 
-class ResponseRef extends Ref implements RefInterface, ResponseInterface
+class ResponseRef extends AbstractRef implements RefInterface, ResponseInterface
 {
+    /**
+     * @param string $ref
+     * @return $this
+     */
+    public static function create($ref = null)
+    {
+        return new self($ref);
+    }
+
     /**
      * @param string $ref
      */

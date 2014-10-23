@@ -38,6 +38,16 @@ class Info implements InfoInterface
     /**
      * @param string $title
      * @param string $version
+     * @return $this
+     */
+    public static function create($title = null, $version = null)
+    {
+        return new self($title, $version);
+    }
+
+    /**
+     * @param string $title
+     * @param string $version
      */
     public function __construct($title = null, $version = null)
     {

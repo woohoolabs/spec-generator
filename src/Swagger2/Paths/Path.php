@@ -54,6 +54,14 @@ class Path implements PathInterface
     private $parameters= [];
 
     /**
+     * @return $this
+     */
+    public static function create()
+    {
+        return new self();
+    }
+
+    /**
      * @return array
      */
     public function generate()

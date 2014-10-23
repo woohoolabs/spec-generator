@@ -20,7 +20,7 @@ class ArrayHeader extends AbstractHeader
     /**
      * @param \WoohooLabs\SpecGenerator\Swagger2\Items\ItemsInterface $items
      */
-    protected function __construct(ItemsInterface $items = null)
+    public function __construct(ItemsInterface $items = null)
     {
         parent::__construct("array");
         $this->setItems($items);

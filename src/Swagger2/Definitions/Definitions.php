@@ -22,7 +22,7 @@ class Definitions implements DefinitionsInterface
     /**
      * @param array $schemas
      */
-    private function __construct(array $schemas = [])
+    public function __construct(array $schemas = [])
     {
         $this->schemas = $schemas;
     }

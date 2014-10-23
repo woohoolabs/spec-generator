@@ -19,7 +19,7 @@ class IntegerHeader extends AbstractHeader
     /**
      * @param string $format
      */
-    protected function __construct($format = "int32")
+    public function __construct($format = "int32")
     {
         parent::__construct("integer");
         $this->setFormat($format);

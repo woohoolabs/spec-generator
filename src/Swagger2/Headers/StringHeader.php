@@ -19,7 +19,7 @@ class StringHeader extends AbstractHeader
     /**
      * @param string $format
      */
-    protected function __construct($format = null)
+    public function __construct($format = null)
     {
         parent::__construct("string");
         $this->setFormat($format);

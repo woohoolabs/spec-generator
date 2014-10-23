@@ -8,6 +8,18 @@ class Paths implements PathsInterface
      */
     private $paths= [];
 
+    /**
+     * @param array $paths
+     * @return $this
+     */
+    public static function create($paths = [])
+    {
+        return new self($paths);
+    }
+
+    /**
+     * @param array $paths
+     */
     public function __construct($paths = [])
     {
         $this->paths = $paths;
