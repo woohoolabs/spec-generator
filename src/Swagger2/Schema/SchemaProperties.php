@@ -62,17 +62,23 @@ class SchemaProperties implements GeneratableInterface
     /**
      * @param string $name
      * @param \WoohooLabs\SpecGenerator\Swagger2\Schema\SchemaInterface $schema
+     * @return $this
      */
     public function setProperty($name, SchemaInterface $schema)
     {
         $this->properties[$name]= $schema;
+
+        return $this;
     }
 
     /**
      * @param array $properties
+     * @return $this
      */
     public function setProperties(array $properties)
     {
         $this->properties = $properties;
+
+        return $this;
     }
 }

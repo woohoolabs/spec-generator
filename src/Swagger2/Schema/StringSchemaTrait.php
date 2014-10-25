@@ -36,25 +36,6 @@ trait StringSchemaTrait
     }
 
     /**
-     * @return string
-     */
-    public function getDefault()
-    {
-        return $this->default;
-    }
-
-    /**
-     * @param string $default
-     * @return $this
-     */
-    public function setDefault($default)
-    {
-        $this->default = $default;
-
-        return $this;
-    }
-
-    /**
      * @return integer
      */
     public function getMaxLength()
