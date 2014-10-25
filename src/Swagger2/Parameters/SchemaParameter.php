@@ -2,6 +2,7 @@
 namespace WoohooLabs\SpecGenerator\Swagger2\Parameters;
 
 use WoohooLabs\SpecGenerator\Swagger2\Schema\SchemaInterface;
+use WoohooLabs\SpecGenerator\Utilities\Generator;
 
 class SchemaParameter extends AbstractParameter
 {
@@ -39,9 +40,10 @@ class SchemaParameter extends AbstractParameter
      */
     public function generate()
     {
-        $objectSchema= $this->schema !== null ? $this->schema->generate() : [];
+        $result= [];
+        $result= Generator::addGeneratableToArrayIfNotEmpty($result, "schema", $this->schema);
 
-        return array_merge($this->generateBasicParameter(), $objectSchema);
+        return array_merge($this->generateBasicParameter(), $result);
     }
 
     /**
