@@ -142,6 +142,15 @@ class Responses implements ResponsesInterface
      * @param \WoohooLabs\SpecGenerator\Swagger2\Responses\ResponseInterface $response
      * @return $this
      */
+    public function setNotFoundResponse(ResponseInterface $response)
+    {
+        return $this->setResponse(HttpStatusCodes::HTTP_NOT_FOUND, $response);
+    }
+
+    /**
+     * @param \WoohooLabs\SpecGenerator\Swagger2\Responses\ResponseInterface $response
+     * @return $this
+     */
     public function setInternalServerErrorResponse(ResponseInterface $response)
     {
         return $this->setResponse(HttpStatusCodes::HTTP_INTERNAL_SERVER_ERROR, $response);
