@@ -15,11 +15,6 @@ abstract class AbstractExtendedSchema implements SchemaInterface
     private $ref;
 
     /**
-     * @var string|array
-     */
-    private $type;
-
-    /**
      * @var string
      */
     private $title;
@@ -80,25 +75,6 @@ abstract class AbstractExtendedSchema implements SchemaInterface
     public function setRef(SchemaRef $ref)
     {
         $this->ref = $ref;
-
-        return $this;
-    }
-
-    /**
-     * @return array|string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param array|string $type
-     * @return $this
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
 
         return $this;
     }
