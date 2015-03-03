@@ -1,7 +1,7 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Swagger2\Parameters;
 
-class FloatParameter extends NumberParameter
+class ByteParameter extends StringParameter
 {
     /**
      * @param string $name
@@ -10,7 +10,7 @@ class FloatParameter extends NumberParameter
      * @param string $format
      * @return $this
      */
-    public static function create($name = null, $in = null, $required = null, $format = "float")
+    public static function create($name = null, $in = null, $required = null, $format = "byte")
     {
         return new self($name, $in, $required, $format);
     }
@@ -21,7 +21,7 @@ class FloatParameter extends NumberParameter
      * @param boolean $required
      * @param string $format
      */
-    public function __construct($name = null, $in = null, $required = null, $format = "float")
+    public function __construct($name = null, $in = null, $required = null, $format = "byte")
     {
         parent::__construct($name, $in, $required, $format);
     }
