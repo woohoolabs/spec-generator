@@ -34,6 +34,41 @@ constants, can't have code completion from your IDE etc. This undermines real co
 
 ## Advanced Usage
 
+#### Caching
+
+```php
+use Doctrine\Common\Cache\MemcachedCache;
+use WoohooLabs\SpecGenerator\Swagger2\SwaggerSpec;
+use WoohooLabs\SpecGenerator\Swagger2\Info\Contact;
+use WoohooLabs\SpecGenerator\Swagger2\Info\MitLicense;
+
+$memcached = new \Memcached();
+$memcached->addServer("localhost", 11211);
+$cache = new MemcachedCache();
+$cache->setMemcached($memcached);
+
+SwaggerSpec::getSpecification(
+    function(SwaggerSpec $swagger) {
+        $info= Info::create()
+            ->setTitle("API Title")
+            ->setVersion("1.0.0")
+            >setDescription("API Description")
+            ->setContact(new Contact("Sam Support", "123-456-789", "samsupport@example.com"))
+            ->setLicense(new MitLicense())
+        ;
+    
+        return $swagger
+            ->setInfo($info)
+            ->setBasePath("/")
+            ->setConsumes(["application/json"])
+            ->setSchemes(["http"])
+            ->setProduces(["application/vnd.hal+json"])
+            ->generate();
+    },
+    $cache     
+);
+```
+
 ## License
 
 The MIT License (MIT). Please see the [License File](https://github.com/woohoolabs/spec-generator/blob/master/LICENSE.md)

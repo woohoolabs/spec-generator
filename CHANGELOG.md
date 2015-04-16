@@ -1,7 +1,13 @@
 # Change Log
 
+### 0.4.0 - 2015-04-16
+
+#### Added
+
+- Support for caching
+
 ### 0.3.0 - 2014-10-23
 
 #### Added
 
-- Supporting Swagger 2.0
+- Support for Swagger 2.0
