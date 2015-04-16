@@ -1,6 +1,7 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Swagger2;
 
+use Doctrine\Common\Cache\CacheProvider;
 use WoohooLabs\SpecGenerator\Swagger2\Definitions\Definitions;
 use WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocs;
 use WoohooLabs\SpecGenerator\Swagger2\Info\Info;
@@ -11,6 +12,16 @@ use WoohooLabs\SpecGenerator\Utilities\Generator;
 
 class SwaggerSpec implements SwaggerSpecInterface
 {
+    /**
+     * @var \Doctrine\Common\Cache\CacheProvider
+     */
+    private $cache;
+
+    /**
+     * @var string
+     */
+    private $cacheId;
+
     /**
      * @var string
      */
@@ -87,20 +98,38 @@ class SwaggerSpec implements SwaggerSpecInterface
     private $externalDocs;
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Info\InfoInterface $info
-     * @return $this
+     * @param callable $getSpec
+     * @param \Doctrine\Common\Cache\CacheProvider $cache
+     * @param string $cacheId
+     * @return array
      */
-    public static function create($info = null)
+    public static function getSpecification(callable $getSpec = null, CacheProvider $cache = null, $cacheId = "woohoolabs.specgenerator.swagger")
     {
-        return new self($info);
+        if ($cache !== null && $cache->contains($cacheId)) {
+            return $cache->fetch($cacheId);
+        }
+
+        return call_user_func($getSpec, new self($cache, $cacheId));
     }
 
     /**
-     * @param \WoohooLabs\SpecGenerator\Swagger2\Info\InfoInterface $info
+     * @param \Doctrine\Common\Cache\CacheProvider $cache
+     * @param string $cacheId
+     * @return $this
      */
-    public function __construct($info = null)
+    public static function create(CacheProvider $cache = null, $cacheId = "woohoolabs.specgenerator.swagger")
     {
-        $this->info = $info;
+        return new self($cache, $cacheId);
+    }
+
+    /**
+     * @param \Doctrine\Common\Cache\CacheProvider $cache
+     * @param string $cacheId
+     */
+    public function __construct(CacheProvider $cache = null, $cacheId = "woohoolabs.specgenerator.swagger")
+    {
+        $this->cache = $cache;
+        $this->cacheId = $cacheId;
 
         return $this;
     }
@@ -129,6 +158,10 @@ class SwaggerSpec implements SwaggerSpecInterface
             $result = Generator::pushGeneratableToArrayIfNotEmpty($result["tags"], $tag);
         }
         $result= Generator::addGeneratableToArrayIfNotEmpty($result, "externalDocs", $this->externalDocs);
+
+        if ($this->cache !== null) {
+            $this->cache->save($this->cacheId, $result);
+        }
 
         return $result;
     }
