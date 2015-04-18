@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.4.1 - 2015-04-18
+
+- Fixed Swagger cache
+
 ### 0.4.0 - 2015-04-16
 
 #### Added

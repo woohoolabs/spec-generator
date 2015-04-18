@@ -1,7 +1,7 @@
 <?php
 namespace WoohooLabs\SpecGenerator\Swagger2;
 
-use Doctrine\Common\Cache\CacheProvider;
+use Doctrine\Common\Cache\Cache;
 use WoohooLabs\SpecGenerator\Swagger2\Definitions\Definitions;
 use WoohooLabs\SpecGenerator\Swagger2\ExternalDocs\ExternalDocs;
 use WoohooLabs\SpecGenerator\Swagger2\Info\Info;
@@ -13,7 +13,7 @@ use WoohooLabs\SpecGenerator\Utilities\Generator;
 class SwaggerSpec implements SwaggerSpecInterface
 {
     /**
-     * @var \Doctrine\Common\Cache\CacheProvider
+     * @var \Doctrine\Common\Cache\Cache
      */
     private $cache;
 
@@ -99,11 +99,11 @@ class SwaggerSpec implements SwaggerSpecInterface
 
     /**
      * @param callable $getSpec
-     * @param \Doctrine\Common\Cache\CacheProvider $cache
+     * @param \Doctrine\Common\Cache\Cache $cache
      * @param string $cacheId
      * @return array
      */
-    public static function getSpecification(callable $getSpec = null, CacheProvider $cache = null, $cacheId = "woohoolabs.specgenerator.swagger")
+    public static function getSpecification(callable $getSpec = null, Cache $cache = null, $cacheId = "woohoolabs.specgenerator.swagger")
     {
         if ($cache !== null && $cache->contains($cacheId)) {
             return $cache->fetch($cacheId);
@@ -113,20 +113,20 @@ class SwaggerSpec implements SwaggerSpecInterface
     }
 
     /**
-     * @param \Doctrine\Common\Cache\CacheProvider $cache
+     * @param \Doctrine\Common\Cache\Cache $cache
      * @param string $cacheId
      * @return $this
      */
-    public static function create(CacheProvider $cache = null, $cacheId = "woohoolabs.specgenerator.swagger")
+    public static function create(Cache $cache = null, $cacheId = "woohoolabs.specgenerator.swagger")
     {
         return new self($cache, $cacheId);
     }
 
     /**
-     * @param \Doctrine\Common\Cache\CacheProvider $cache
+     * @param \Doctrine\Common\Cache\Cache $cache
      * @param string $cacheId
      */
-    public function __construct(CacheProvider $cache = null, $cacheId = "woohoolabs.specgenerator.swagger")
+    public function __construct(Cache $cache = null, $cacheId = "woohoolabs.specgenerator.swagger")
     {
         $this->cache = $cache;
         $this->cacheId = $cacheId;
