@@ -40,15 +40,16 @@ class Generator
 
     /**
      * @param array $array
+     * @param string $key
      * @param \WoohooLabs\SpecGenerator\GeneratableInterface $value
      * @return array
      */
-    public static function pushGeneratableToArrayIfNotEmpty($array, GeneratableInterface $value = null)
+    public static function pushGeneratableToArrayIfNotEmpty(array $array, $key, GeneratableInterface $value = null)
     {
         if ($value !== null) {
             $generation= $value->generate();
             if (is_array($generation) === true && empty($generation) === false) {
-                $array[] = $generation;
+                $array[$key][] = $generation;
             }
         }
 
