@@ -53,7 +53,7 @@ class SecurityDefinitions implements SecurityRequirementInterface
     /**
      * @return array
      */
-    public function getResponses()
+    public function getSchemes()
     {
         return $this->schemes;
     }
