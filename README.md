@@ -52,7 +52,7 @@ SwaggerSpec::getSpecification(
         $info= Info::create()
             ->setTitle("API Title")
             ->setVersion("1.0.0")
-            >setDescription("API Description")
+            ->setDescription("API Description")
             ->setContact(new Contact("Sam Support", "123-456-789", "samsupport@example.com"))
             ->setLicense(new MitLicense())
         ;
