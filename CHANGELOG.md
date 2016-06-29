@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.4.2 - 2016-06-29
+
+- Add ItemsRef to create a reference within an items array
+
 ### 0.4.1 - 2015-04-18
 
 - Fixed Swagger cache
