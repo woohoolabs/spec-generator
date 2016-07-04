@@ -39,17 +39,17 @@ class Generator
     }
 
     /**
-     * @param array $array
-     * @param string $key
-     * @param \WoohooLabs\SpecGenerator\GeneratableInterface $value
+     * @param array                $array
+     * @param GeneratableInterface $value
+     *
      * @return array
      */
-    public static function pushGeneratableToArrayIfNotEmpty(array $array, $key, GeneratableInterface $value = null)
+    public static function pushGeneratableToArrayIfNotEmpty(array $array, GeneratableInterface $value = null)
     {
         if ($value !== null) {
-            $generation= $value->generate();
+            $generation = $value->generate();
             if (is_array($generation) === true && empty($generation) === false) {
-                $array[$key][] = $generation;
+                $array[] = $generation;
             }
         }
 
