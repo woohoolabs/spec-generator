@@ -40,6 +40,27 @@ class Generator
 
     /**
      * @param array                $array
+     * @param string               $key
+     * @param GeneratableInterface $value
+     *
+     * @return array
+     */
+    public static function pushGeneratableToArrayKeyIfNotEmpty(array $array, $key, GeneratableInterface $value = null)
+    {
+        if ($value !== null) {
+            $keyArray = array();
+            if (isset($array[$key])) {
+                $keyArray = $array[$key];
+            }
+
+            $array[$key] = static::pushGeneratableToArrayIfNotEmpty($keyArray, $value);
+        }
+
+        return $array;
+    }
+
+    /**
+     * @param array                $array
      * @param GeneratableInterface $value
      *
      * @return array
