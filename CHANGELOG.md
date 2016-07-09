@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.5.0 - 2016-07-09
+
+- Fix adding parameters to a path / operation
+
 ### 0.4.4 - 2016-06-29
 
 - Add ItemsRef to create a reference within an items array
